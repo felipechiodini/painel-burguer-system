@@ -2,6 +2,9 @@ h1, h2, h3, h4, h5 {
     margin: 0;
 }
 
+$body-bg: #bd3f3f;
+$body-color: #111;
+
 $grid-breakpoints: (
   xs: 0,
   sm: 480px,
@@ -11,6 +14,3 @@ $grid-breakpoints: (
 );
 
 $enable-rounded: false;
-
-@import 'bootstrap/scss/bootstrap.scss';
-@import 'bootstrap-vue/src/index.scss';

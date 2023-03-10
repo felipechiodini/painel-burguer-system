@@ -1,0 +1,16 @@
+h1, h2, h3, h4, h5 {
+    margin: 0;
+}
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 480px,
+  md: 640px,
+  lg: 992px,
+  xl: 1300px
+);
+
+$enable-rounded: false;
+
+@import 'bootstrap/scss/bootstrap.scss';
+@import 'bootstrap-vue/src/index.scss';

@@ -6,7 +6,7 @@
       <label for="">Categoria</label>
     </div>
 
-    <div class="row align-items-center shadow m-3 border rounded p-1 py-2" v-for="(product, key) in products" :key="key">
+    <div class="row align-items-center shadow m-3 border rounded p-1 py-2" v-for="(product, key) in page.data" :key="key">
       <div class="col-auto">
         <b-img class="rounded image" height="60" width="60" :src="product.src" alt="" />
       </div>
@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import Api from '@/Axios/Api'
+
 export default {
   name: 'Products',
   metaInfo: {
@@ -32,21 +34,23 @@ export default {
   },
   data: () => {
     return {
-      products: [
-        { name: 'Teste', price: 20, description: 'DESCRICAO', src: 'https://media.cnn.com/api/v1/images/stellar/prod/220428140436-04-classic-american-hamburgers.jpg?c=original' },
-        { name: 'Teste', price: 20, description: 'DESCRICAO', src: 'https://media.cnn.com/api/v1/images/stellar/prod/220428140436-04-classic-american-hamburgers.jpg?c=original' },
-        { name: 'Teste', price: 20, description: 'DESCRICAO', src: 'https://media.cnn.com/api/v1/images/stellar/prod/220428140436-04-classic-american-hamburgers.jpg?c=original' },
-        { name: 'Teste', price: 20, description: 'DESCRICAO', src: 'https://media.cnn.com/api/v1/images/stellar/prod/220428140436-04-classic-american-hamburgers.jpg?c=original' },
-      ]
+      page: null
     }
   },
   mounted() {
     this.loadOrders()
   },
   methods: {
-    loadOrders() {
-      
-      
+    async loadOrders() {
+      try {
+        const { data } = await Api.get('/products')
+        this.page = data
+      } catch (error) {
+        this.$bvToast.toast(`Toast with action link`, {
+          href: '#foo',
+          title: 'Example'
+        })
+      }
     }
   }
 }

@@ -38,7 +38,7 @@ const routes = [
         component: Waiters
       },
       {
-        path: '/teste',
+        path: '/configuracoes',
         name: 'stores.config',
         component: Stores
       },

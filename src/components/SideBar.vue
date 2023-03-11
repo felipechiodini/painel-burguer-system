@@ -1,13 +1,9 @@
 <template>
-  <div>
-    <b-sidebar id="sidebar" title="Sidebar" shadow>
-      <div class="px-3 py-2">
-        <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
-          in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-        </p>
-        <b-img src="https://picsum.photos/500/500/?image=54" fluid thumbnail></b-img>
-      </div>
-    </b-sidebar>
-  </div>
+  <b-sidebar id="sidebar" shadow>
+    <div class="px-3 py-2">
+      <b-button to="/produtos">Produtos</b-button>
+      <b-button to="/garcons">Garçons</b-button>
+      <b-button to="/combos">Combos</b-button>
+    </div>
+  </b-sidebar>
 </template>

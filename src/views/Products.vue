@@ -27,6 +27,9 @@
 <script>
 export default {
   name: 'Products',
+  metaInfo: {
+    title: 'Produtos',
+  },
   data: () => {
     return {
       products: [

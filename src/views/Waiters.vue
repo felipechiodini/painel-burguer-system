@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Api from '@/Axios/Api'
+import Api from '@/js/Api'
 
 export default {
   name: 'Garçons',

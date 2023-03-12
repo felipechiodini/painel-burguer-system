@@ -11,7 +11,7 @@
 
 
 <script>
-import Api from '@/Axios/Api'
+import Api from '@/js/Api'
 import StoreStatus from '@/components/StoreStatus.vue'
 
 export default {

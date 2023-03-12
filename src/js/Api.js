@@ -1,5 +1,5 @@
 import Axios from 'axios'
-import Storage from '@/Axios/Storage'
+import Storage from '@/js/Storage'
 import Router from '@/router'
 
 const Api = Axios.create({

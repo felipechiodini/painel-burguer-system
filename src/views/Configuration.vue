@@ -25,46 +25,23 @@
         <b-tab title="Horário de atendimento">
           <store-schedules></store-schedules>
         </b-tab>
-
         <b-tab title="Endereço" active>
-          <label for="">Rua</label>
-          <b-input></b-input>
-          <label for="">Número</label>
-          <b-input></b-input>
-          <label for="">Bairro</label>
-          <b-input></b-input>
-          <label for="">Cidade</label>
-          <b-input></b-input>
-          <label for="">Estado</label>
-          <b-input></b-input>
+          <store-address></store-address>
         </b-tab>
-
       </b-tabs>
     </div>
-
-
   </div>
 </template>
 
 <script>
 import StoreSchedules from '@/components/StoreSchedules.vue'
+import StoreAddress from '@/components/StoreAddress.vue'
 
 export default {
   name: 'Stores',
   components: {
-    StoreSchedules
-  },
-  mounted() {
-    this.loadOrders()
-  },
-  methods: {
-    loadOrders() {
-      
-    }
+    StoreSchedules,
+    StoreAddress
   }
 }
-
-
-
-
 </script>

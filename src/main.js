@@ -6,7 +6,6 @@ import VueApexCharts from 'vue-apexcharts'
 Vue.config.productionTip = false
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-
 import '@/assets/css/custom.scss'
 
 Vue.use(BootstrapVue)

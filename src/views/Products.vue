@@ -13,8 +13,8 @@
       <div class="col-auto">
         <span>{{ product.price }}</span>
       </div>
-      <div class="col-auto mr-auto">
-        <b-button variant="primary"><b-icon icon="pencil"></b-icon></b-button>
+      <div class="col-auto ml-auto">
+        <b-button size="sm" variant="primary"><b-icon icon="pencil"></b-icon></b-button>
       </div>
     </div>
   </div>

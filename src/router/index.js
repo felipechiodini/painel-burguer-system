@@ -7,10 +7,10 @@ import Home from '../views/Home.vue'
 import Orders from '../views/Orders.vue'
 import Products from '../views/Products.vue'
 import Configuration from '../views/Configuration.vue'
-import Subscription from '../views/Subscription.vue'
 import Waiters from '../views/Waiters.vue'
 import Combos from '../views/Combos.vue'
 import Cards from '../views/Cards.vue'
+import Profile from '../views/Profile.vue'
 
 Vue.use(VueRouter)
 
@@ -23,6 +23,11 @@ const routes = [
         path: '/',
         name: 'home',
         component: Home
+      },
+      {
+        path: '/perfil',
+        name: 'profile',
+        component: Profile
       },
       {
         path: '/pedidos',
@@ -53,11 +58,6 @@ const routes = [
         path: '/configuracoes',
         name: 'store.config',
         component: Configuration
-      },
-      {
-        path: '/assinatura',
-        name: 'subscription.index',
-        component: Subscription
       },
     ]
   },

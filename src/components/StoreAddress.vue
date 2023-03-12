@@ -30,9 +30,12 @@ export default {
     async load() {
       const { data } = await Api.get('/address')
       this.address = data
+    },
+    async save() {
+      const { data } = await Api.post('/address', this.address)
+      this.address = data
     }
   }
-
 }
 </script>
 

@@ -6,9 +6,11 @@ import Login from '../views/Login.vue'
 import Home from '../views/Home.vue'
 import Orders from '../views/Orders.vue'
 import Products from '../views/Products.vue'
-import Stores from '../views/Stores.vue'
+import Configuration from '../views/Configuration.vue'
 import Subscription from '../views/Subscription.vue'
 import Waiters from '../views/Waiters.vue'
+import Combos from '../views/Combos.vue'
+import Cards from '../views/Cards.vue'
 
 Vue.use(VueRouter)
 
@@ -38,9 +40,19 @@ const routes = [
         component: Waiters
       },
       {
+        path: '/comandas',
+        name: 'card.index',
+        component: Cards
+      },
+      {
+        path: '/combos',
+        name: 'combo.index',
+        component: Combos
+      },
+      {
         path: '/configuracoes',
-        name: 'stores.config',
-        component: Stores
+        name: 'store.config',
+        component: Configuration
       },
       {
         path: '/assinatura',

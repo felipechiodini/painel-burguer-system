@@ -1,16 +1,7 @@
-h1, h2, h3, h4, h5 {
-  margin: 0;
-}
-
-$body-bg: #bd3f3f;
+// Define variable defaults
+$body-bg: #000;
 $body-color: #111;
 
-$grid-breakpoints: (
-  xs: 0,
-  sm: 480px,
-  md: 640px,
-  lg: 992px,
-  xl: 1300px
-);
-
-$enable-rounded: false;
+// Then import Bootstrap and BootstrapVue SCSS files (order is important)
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+@import 'node_modules/bootstrap-vue/src/index.scss';

@@ -11,6 +11,7 @@ import Waiters from '../views/Waiters.vue'
 import Combos from '../views/Combos.vue'
 import Cards from '../views/Cards.vue'
 import Profile from '../views/Profile.vue'
+import { isAuthenticate } from '@/js/Auth'
 
 Vue.use(VueRouter)
 
@@ -78,6 +79,11 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.name !== 'login' && !isAuthenticate()) next({ name: 'login' })
+  else next()
 })
 
 export default router

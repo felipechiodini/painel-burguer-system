@@ -7,6 +7,7 @@ Vue.config.productionTip = false
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import '@/assets/css/custom.scss'
+import store from './store'
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
@@ -15,5 +16,6 @@ Vue.component('apexchart', VueApexCharts)
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')

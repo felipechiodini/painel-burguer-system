@@ -1,10 +1,10 @@
 <template>
-  <div class="container-fluid col-md-6 col-12">
+  <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100vh;">
     <label for="email">E-mail</label>
     <b-input id="email" v-model="form.email"></b-input>
     <label for="password">Senha</label>
     <b-input id="password" type="password" v-model="form.password"></b-input>
-    <b-button class="btn w-100 mt-3 bg-primary" variant="danger" @click="login()">Entrar</b-button>
+    <b-button class="w-100 mt-3" variant="danger" @click="login()">Entrar</b-button>
   </div>
 </template>
 
@@ -34,3 +34,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+  input, button {
+    max-width: 300px;
+  }
+
+</style>

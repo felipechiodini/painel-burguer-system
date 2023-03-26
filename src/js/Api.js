@@ -1,6 +1,7 @@
 import Axios from 'axios'
 import Storage from '@/js/Storage'
 import Router from '@/router'
+import store from '@/store'
 
 const Api = Axios.create({
   baseURL: process.env.VUE_APP_API_BASE_URL,
@@ -12,9 +13,12 @@ const Api = Axios.create({
 
 Api.interceptors.request.use(function (config) {
   const token = Storage.get('token')
-  const id = Storage.get('store', 'id')
   if (token) config.headers['Authorization'] = 'Bearer ' + token
-  if (id) config.headers['x-store-uuid'] = 'Bearer ' + id
+  
+  if (store.getters['store/store']) {
+    config.headers['x-store-uuid'] = store.getters['store/store'].id
+  }
+
   return config
 }, function (error) {
   return Promise.reject(error)

@@ -8,7 +8,7 @@
       </div>
       <div class="col-3">
         <h5>{{ product.name }}</h5>
-        <span>{{ product.description }}</span>
+        <!-- <span>{{ product.description }}</span> -->
       </div>
       <div class="col-auto">
         <span>{{ product.price }}</span>
@@ -27,7 +27,7 @@ export default {
   name: 'Products',
   data: () => {
     return {
-      page: null
+      page: []
     }
   },
   mounted() {
@@ -39,10 +39,7 @@ export default {
         const { data } = await Api.get('/product')
         this.page = data
       } catch (error) {
-        this.$bvToast.toast(`Toast with action link`, {
-          href: '#foo',
-          title: 'Example'
-        })
+        alert('ocorreu um erro')
       }
     }
   }

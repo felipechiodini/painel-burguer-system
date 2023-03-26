@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="row">
-      <div class="col-2" v-for="(schedule, key) in schedules" :key="key">
+    <div class="row" v-if="schedules">
+      <div class="col-2 border rounded m-3 p-2" v-for="(schedule, key) in schedules" :key="key">
         <span>{{ weekDay(schedule.week_day) }}</span>
         <b-form-checkbox switch v-model="schedule.closed">Fechado</b-form-checkbox>
         <label>Abre</label>
@@ -34,7 +34,16 @@ export default {
       this.schedules = data
     },
     async save() {
-      await Api.post('/schedule', this.schedules)
+      try {
+        const { data } = await Api.post('/schedule', this.schedules)
+
+        this.$bvToast.toast(data.message, {
+          title: 'Sucesso',
+          variant: 'success'
+        })
+      } catch (error) {
+        
+      }
     },
     weekDay(weekDay) {
       return translateWeekDay(weekDay)

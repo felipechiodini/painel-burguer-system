@@ -14,11 +14,13 @@
 </template>
 
 <script>
+import Api from '@/js/Api'
+
 export default {
   name: 'Cards',
   data: () => {
     return {
-      page: null
+      page: []
     }
   },
   mounted() {
@@ -26,12 +28,8 @@ export default {
   },
   methods: {
     async load() {
-      try {
-        const { data } = await Api.get('/card')
-        this.page = data
-      } catch (error) {
-        
-      }
+      const { data } = await Api.get('/card')
+      this.page = data
     }
   }
 }

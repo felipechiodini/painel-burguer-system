@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100vh;">
+  <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100vh;" @keypress.enter="login()">
     <label for="email">E-mail</label>
     <b-input id="email" v-model="form.email"></b-input>
     <label for="password">Senha</label>

@@ -36,12 +36,20 @@
 <script>
 import StoreSchedules from '@/components/StoreSchedules.vue'
 import StoreAddress from '@/components/StoreAddress.vue'
+import Api from '@/js/Api'
 
 export default {
   name: 'Stores',
   components: {
     StoreSchedules,
     StoreAddress
+  },
+  methods: {
+    async save() {
+      const { data } = await Api.post('configuration', { 
+        
+      })
+    }
   }
 }
 </script>

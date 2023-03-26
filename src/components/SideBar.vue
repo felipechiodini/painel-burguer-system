@@ -1,6 +1,7 @@
 <template>
   <b-sidebar id="sidebar" shadow>
     <div class="container">
+      <b-button :variant="variant('/')" class="text-left w-100 pointer p-2" to="/">Home</b-button>
       <b-button :variant="variant('/produtos')" class="text-left w-100 pointer p-2" to="/produtos">Produtos</b-button>
       <b-button :variant="variant('/garcons')" class="text-left w-100 pointer p-2" to="/garcons">Garçons</b-button>
       <b-button :variant="variant('/combos')" class="text-left w-100 pointer p-2" to="/combos">Combos</b-button>

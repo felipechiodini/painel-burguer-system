@@ -29,10 +29,7 @@ export default {
         const { data } = await Api.get('/waiter')
         this.page = data
       } catch (error) {
-        this.$bvToast.toast(`Toast with action link`, {
-          href: '#foo',
-          title: 'Example'
-        })
+       
       }
     }
   }

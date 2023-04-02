@@ -2,11 +2,15 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
-$body-color: #111;
+$body-bg: #fff;
+
+$theme-colors: (
+);
 
 .pointer {
     cursor: pointer;
 }
+
 
 // Then import Bootstrap and BootstrapVue SCSS files (order is important)
 @import 'node_modules/bootstrap/scss/bootstrap.scss';

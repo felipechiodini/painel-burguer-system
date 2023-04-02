@@ -9,6 +9,7 @@
 <script>
 import NavBar from '@/components/NavBar.vue'
 import SideBar from '@/components/SideBar.vue'
+import Echo from "laravel-echo"
 
 export default {
   components: {

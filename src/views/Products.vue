@@ -1,39 +1,31 @@
 <template>
   <div class="container my-4">
     <div class="row my-2">
-      <h5 class="col-auto">Produtos</h5>
+      <h3 class="col-auto">Produtos</h3>
       <b-button variant="primary" class="ml-auto">Novo Produto</b-button>
     </div>
 
-    <div class="table-responsive">
-      <table class="table border rounded">
-        <div>
-          <b-input placeholder="Pesquisar" class="w-25 my-2"></b-input>
-        </div>
-        <tr>
-          <th>Nome</th>
-          <th>Ativo</th>
-          <th>Preço</th>
-        </tr>
-        <tr v-for="(product, key) in page.data" :key="key">
-          <td>{{ product.name }}</td>
-          <td>true</td>
-          <td>{{ product.price }}</td>
-        </tr>
-        <div>
-
-        </div>
-      </table>
+    <div class="row my-2">
+      <b-card class="col-auto shadow p-0" style="border-radius: 10px;">
+        <h3>Quantidade</h3>
+        <h5>50</h5>
+      </b-card>
     </div>
 
+    <table-vue></table-vue>
+    
   </div>
 </template>
 
 <script>
 import Api from '@/js/Api'
+import TableVue from '@/components/Utils/Table.vue'
 
 export default {
   name: 'Products',
+  components: {
+    TableVue
+  },
   data: () => {
     return {
       page: []

@@ -1,22 +1,31 @@
 <template>
   <div class="container my-4">
-    <h5 class="mb-4">Produtos</h5>
-    <b-button class="py-1 px-2" variant="primary"><b-icon icon="plus"></b-icon> Novo Produto</b-button>
-    <div class="row align-items-center shadow m-3 border rounded p-1 py-2" v-for="(product, key) in page.data" :key="key">
-      <div class="col-auto">
-        <b-img class="rounded image" height="60" width="60" :src="product.photos[0].src" alt="" />
-      </div>
-      <div class="col-3">
-        <h5>{{ product.name }}</h5>
-        <!-- <span>{{ product.description }}</span> -->
-      </div>
-      <div class="col-auto">
-        <span>{{ product.price }}</span>
-      </div>
-      <div class="col-auto ml-auto">
-        <b-button size="sm" variant="primary"><b-icon icon="pencil"></b-icon></b-button>
-      </div>
+    <div class="row my-2">
+      <h5 class="col-auto">Produtos</h5>
+      <b-button variant="primary" class="ml-auto">Novo Produto</b-button>
     </div>
+
+    <div class="table-responsive">
+      <table class="table border rounded">
+        <div>
+          <b-input placeholder="Pesquisar" class="w-25 my-2"></b-input>
+        </div>
+        <tr>
+          <th>Nome</th>
+          <th>Ativo</th>
+          <th>Preço</th>
+        </tr>
+        <tr v-for="(product, key) in page.data" :key="key">
+          <td>{{ product.name }}</td>
+          <td>true</td>
+          <td>{{ product.price }}</td>
+        </tr>
+        <div>
+
+        </div>
+      </table>
+    </div>
+
   </div>
 </template>
 
@@ -41,6 +50,11 @@ export default {
       } catch (error) {
         alert('ocorreu um erro')
       }
+    },
+    teste(product) {
+      this.$router.push({
+        name: 'product.new',
+      })
     }
   }
 }

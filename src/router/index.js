@@ -12,6 +12,9 @@ import Combos from '../views/Combos.vue'
 import Cards from '../views/Cards.vue'
 import Profile from '../views/Profile.vue'
 import { isAuthenticate } from '@/js/Auth'
+import EditProduct from '@/views/Products/Edit.vue'
+import DetailsProduct from '@/views/Products/Details.vue'
+import NewProduct from '@/views/Products/New.vue'
 
 Vue.use(VueRouter)
 
@@ -36,9 +39,14 @@ const routes = [
         component: Orders
       },
       {
-        path: '/produtos',
-        name: 'produto',
-        component: Products
+        path: 'produtos',
+        name: 'product.index',
+        component: Products,
+      },
+      {
+        path: 'produtos/:id/editar',
+        name: 'product.edit',
+        component: EditProduct,
       },
       {
         path: '/garcons',

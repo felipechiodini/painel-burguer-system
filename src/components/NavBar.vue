@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <b-navbar class="shadow">
-      <b-button size="sm" v-b-toggle.sidebar><b-icon icon="justify"></b-icon></b-button>
-      <b-form-select size="sm" class="w-25 ml-auto" @change="loadStore" v-model="selectedStore" :options="stores" text-field="name" value-field="id" />
-      <b-button size="sm" class="ml-2" to="perfil"><b-icon icon="person-fill" aria-hidden="true"></b-icon></b-button>
-    </b-navbar>
-  </div>
+  <b-navbar class="bg-white border-bottom">
+    <b-button size="sm" v-b-toggle.sidebar><b-icon icon="justify"></b-icon></b-button>
+    <b-form-select size="sm" class="w-25 ml-auto" @change="loadStore" v-model="selectedStore" :options="stores" text-field="name" value-field="id" />
+    <b-button size="sm" class="ml-2" to="perfil"><b-icon icon="person-fill" aria-hidden="true"></b-icon></b-button>
+  </b-navbar>
 </template>
 
 <script>

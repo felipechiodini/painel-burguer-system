@@ -11,12 +11,23 @@
     </div>
 
     <b-card class="shadow mb-3">
-      <label for="product-active">Ativo</label>
-      <b-form-checkbox id="product-active" switch v-model="product.active"></b-form-checkbox>
-      <label for="product-name">Nome</label>
-      <b-input id="product-name" v-model="product.name"></b-input>
-      <label for="product-description">Descrição</label>
-      <b-textarea id="product-description" rows="5" v-model="product.description"></b-textarea>
+      <template v-if="loading === false">
+        <div class="row mb-2">
+          <div class="col-auto">
+            <label for="product-active">Ativo</label>
+            <b-form-checkbox id="product-active" switch v-model="product.active"></b-form-checkbox>
+          </div>
+          <div class="col">
+            <label for="product-name">Nome</label>
+            <b-input size="sm" id="product-name" v-model="product.name" />
+          </div>
+        </div>
+        <label for="product-description">Descrição</label>
+        <b-textarea id="product-description" rows="5" v-model="product.description"></b-textarea>
+      </template>
+      <template v-else>
+        <b-icon icon="spin"></b-icon>
+      </template>
       <template #footer>
         <b-button class="d-flex ml-auto" size="sm" variant="primary" @click="save()">Salvar</b-button>
       </template>
@@ -68,8 +79,14 @@ export default {
   },
   data: () => {
     return {
-      product: null,
-      prices: null
+      product: {
+        active: null,
+        name: null,
+        description: null
+      },
+      loading: false,
+      prices: null,
+      mode: null
     }
   },
   mounted() {
@@ -77,12 +94,20 @@ export default {
   },
   methods: {
     load() {
-      Api.get(`products/${this.$route.params.id}`).then(({ data }) => {
-        this.product = data
-        this.loadPrice()
-      }).catch((error) => {
+      let idProduct = this.$route.params.id ?? null
 
-      })
+      if (idProduct) {
+        this.loading = true
+        this.mode = 'edit'
+        Api.get(`products/${idProduct}`).then(({ data }) => {
+          this.product = data
+          this.loadPrice()
+        }).finally(() => {
+          this.loading = false
+        })
+      } else {
+        this.mode = 'store'
+      }
     },
     loadPrice() {
       Api.get(`products/${this.$route.params.id}/prices`).then(({ data }) => {

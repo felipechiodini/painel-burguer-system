@@ -1,5 +1,5 @@
 <template>
-  <div class="table-responsive border shadow-lg" style="border-radius: 10px;" v-if="page">
+  <div class="table-responsive border shadow-lg bg-white border" style="border-radius: 10px;" v-if="page">
     
     <div class="row m-2">
       <div class="col-auto ml-auto p-0">
@@ -86,7 +86,6 @@ export default {
       pagination: {},
       selectedColumns: [],
       tableFields: [
-        { key: 'id', label: 'ID' },
         { key: 'name', label: 'Nome' },
         { key: 'edit', label: '' },
         { key: 'delete', label: '' },

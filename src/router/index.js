@@ -44,6 +44,11 @@ const routes = [
         component: Products,
       },
       {
+        path: 'produtos/novo',
+        name: 'product.new',
+        component: EditProduct,
+      },
+      {
         path: 'produtos/:id/editar',
         name: 'product.edit',
         component: EditProduct,

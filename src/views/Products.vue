@@ -1,15 +1,8 @@
 <template>
-  <div class="container my-4">
-    <div class="row my-2">
-      <h3 class="col-auto">Produtos</h3>
-      <b-button variant="primary" class="ml-auto">Novo Produto</b-button>
-    </div>
-
-    <div class="row my-2">
-      <b-card class="col-auto shadow p-0" style="border-radius: 10px;">
-        <h3>Quantidade</h3>
-        <h5>50</h5>
-      </b-card>
+  <div class="container-fluid px-5">
+    <div class="row my-3">
+      <h3 class="col-auto" style="font-size: 1.5rem;">Produtos</h3>
+      <b-button size="sm" variant="primary" class="ml-auto shadow" to="/produtos/novo">Novo Produto</b-button>
     </div>
 
     <table-vue></table-vue>
@@ -32,7 +25,7 @@ export default {
     }
   },
   mounted() {
-    this.load()
+    // this.load()
   },
   methods: {
     async load() {

@@ -2,10 +2,13 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
-$body-bg: #fff;
+$body-bg: #f3f4f6;
+$border-radius: 0.6rem;
 
 $theme-colors: (
+    "primary": #ea1d2c
 );
+
 
 .pointer {
     cursor: pointer;

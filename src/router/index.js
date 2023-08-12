@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Main from '../Layout/Main.vue'
-import Auth from '../Layout/Auth.vue'
+import NoAuth from '../Layout/NoAuth.vue'
 import Login from '../views/Login.vue'
+import Register from '../views/Register.vue'
 import Home from '../views/Home.vue'
 import Orders from '../views/Orders.vue'
 import Products from '../views/Products.vue'
@@ -10,6 +11,7 @@ import Configuration from '../views/Configuration.vue'
 import Waiters from '../views/Waiters.vue'
 import Combos from '../views/Combos.vue'
 import Cards from '../views/Cards.vue'
+import NotFound from '../views/NotFound.vue'
 import Profile from '../views/Profile.vue'
 import { isAuthenticate } from '@/js/Auth'
 import EditProduct from '@/views/Products/Update.vue'
@@ -26,7 +28,7 @@ const routes = [
     component: Main,
     children: [
       {
-        path: '/',
+        path: '/home',
         name: 'home',
         component: Home
       },
@@ -89,14 +91,18 @@ const routes = [
   },
   {
     path: '/login',
-    component: Auth,
-    children: [
-      {
-        path: '/',
-        name: 'login',
-        component: Login
-      },
-    ]
+    name: 'auth.login',
+    component: Login
+  },
+  {
+    path: '/criar-conta',
+    name: 'auth.register',
+    component: Register
+  },
+  {
+    path: '*',
+    name: 'NotFound',
+    component: NotFound
   }
 ]
 
@@ -106,9 +112,9 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  if (to.name !== 'login' && !isAuthenticate()) next({ name: 'login' })
-  else next()
-})
+// router.beforeEach((to, from, next) => {
+//   if (to.name !== 'login' && !isAuthenticate()) next({ name: 'login' })
+//   else next()
+// })
 
 export default router

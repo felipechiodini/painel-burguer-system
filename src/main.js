@@ -2,6 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import VueApexCharts from 'vue-apexcharts'
+import Echo from 'laravel-echo'
+import Pusher from 'pusher-js'
 
 Vue.config.productionTip = false
 

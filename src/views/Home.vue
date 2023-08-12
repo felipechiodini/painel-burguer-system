@@ -18,6 +18,7 @@
 import StoreStatus from '@/components/StoreStatus.vue'
 import { mapGetters } from 'vuex'
 import Api from '@/js/Api'
+import Echo from 'laravel-echo'
 
 export default {
   name: 'Home',
@@ -33,6 +34,12 @@ export default {
     ...mapGetters('store', ['store'])
   },
   mounted() {
+    // Echo.private(`teste`)
+    //   .notification((notification) => {
+    //       console.log('Nova notificação:', notification);
+    //       // Lidar com a notificação recebida no frontend
+    //   });
+      
     this.load()
   },
   methods: {

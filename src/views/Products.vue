@@ -5,8 +5,12 @@
       <b-button size="sm" variant="primary" class="ml-auto shadow" to="/produtos/novo">Novo Produto</b-button>
     </div>
 
-    <table-vue></table-vue>
-    
+    <table>
+      <tr>
+        <td>aaaaaaa</td>
+      </tr>
+    </table>
+
   </div>
 </template>
 

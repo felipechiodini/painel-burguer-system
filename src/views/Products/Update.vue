@@ -40,14 +40,39 @@
           <b-button class="ml-auto" variant="primary" size="sm">Nova Imagem</b-button>
         </div>
       </template>
-      <table>
-        <tr>
-          <th>Preço</th>
-        </tr>
-        <tr>
-          <td>{{ 20 }}</td>
-        </tr>
-      </table>
+      <div class="table-responsive">
+        <table class="w-100">
+          <tr>
+            <th>Image</th>
+            <th>Ordem</th>
+          </tr>
+          <tr v-for="(image, key) in images" :key="key">
+            <td><img :src="image.src"></td>
+            <td>{{ image.order }}</td>
+          </tr>
+        </table>
+      </div>
+    </b-card>
+
+    <b-card class="shadow mb-3">
+      <template #header>
+        <div class="d-flex align-items-center">
+          <h5>Substituições</h5>
+          <b-button class="ml-auto" variant="primary" size="sm" :to="'product/1/substituicao/nova'">Nova Substituição</b-button>
+        </div>
+      </template>
+      <div class="table-responsive">
+        <table class="w-100">
+          <tr>
+            <th>Nome</th>
+            <th>Substituição</th>
+          </tr>
+          <tr v-for="(replacement, key) in replacements" :key="key">
+            <td>{{ replacement.name }}</td>
+            <td>{{ replacement.value }}</td>
+          </tr>
+        </table>
+      </div>
     </b-card>
 
     <b-card class="shadow mb-3">
@@ -84,6 +109,8 @@ export default {
         name: null,
         description: null
       },
+      images: [{ order: 'fleipe', src: 'teste.jpg' }],
+      replacements: [{ order: 'fleipe', src: 'teste.jpg' }],
       loading: false,
       prices: null,
       mode: null

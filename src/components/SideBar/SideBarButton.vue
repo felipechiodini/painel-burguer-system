@@ -1,14 +1,12 @@
 <template>
-  <div>
-    novo
-  </div>
+  <button>
+    Teste
+  </button>
 </template>
 
 <script>
 export default {
-  components: {
 
-  }
 }
 </script>
 

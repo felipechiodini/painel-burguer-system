@@ -16,7 +16,8 @@ import Profile from '../views/Profile.vue'
 import { isAuthenticate } from '@/js/Auth'
 import EditProduct from '@/views/Products/Update.vue'
 import DetailsProduct from '@/views/Products/Details.vue'
-import NewProduct from '@/views/Products/New.vue'
+import StoreProduct from '@/views/Products/Store.vue'
+import IndexProduct from '@/views/Products/Index.vue'
 import StoreProductReplacement from '@/views/StoreProductReplacement.vue'
 import StoreProductAdditional from '@/views/StoreProductAdditional.vue'
 
@@ -45,12 +46,12 @@ const routes = [
       {
         path: 'produtos',
         name: 'product.index',
-        component: Products,
+        component: IndexProduct,
       },
       {
         path: 'produtos/novo',
         name: 'product.new',
-        component: EditProduct,
+        component: StoreProduct,
       },
       {
         path: 'produtos/:id/editar',

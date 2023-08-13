@@ -57,6 +57,27 @@
     <b-card class="shadow mb-3">
       <template #header>
         <div class="d-flex align-items-center">
+          <h5>Adicionais</h5>
+          <b-button class="ml-auto" variant="primary" size="sm" :to="'product/1/substituicao/nova'">Novo Adicional</b-button>
+        </div>
+      </template>
+      <div class="table-responsive">
+        <table class="w-100">
+          <tr>
+            <th>Nome</th>
+            <th></th>
+          </tr>
+          <tr v-for="(replacement, key) in replacements" :key="key">
+            <td>{{ replacement.name }}</td>
+            <td>{{ replacement.value }}</td>
+          </tr>
+        </table>
+      </div>
+    </b-card>
+
+    <b-card class="shadow mb-3">
+      <template #header>
+        <div class="d-flex align-items-center">
           <h5>Substituições</h5>
           <b-button class="ml-auto" variant="primary" size="sm" :to="'product/1/substituicao/nova'">Nova Substituição</b-button>
         </div>

@@ -1,11 +1,11 @@
 <template>
-  <b-navbar class="bg-white border-bottom">
-    <b-form-select class="w-25 ml-auto" @change="loadStore" v-model="selectedStore" :options="stores" text-field="name" value-field="id" />
-    <b-button v-b-toggle.sidebar-right size="sm" variant="transparent" class="circle mx-2">
+  <b-navbar class="bg-dark">
+    <!-- <b-form-select class="w-25 ml-auto" @change="loadStore" v-model="selectedStore" :options="stores" text-field="name" value-field="id" /> -->
+    <b-button v-b-toggle.sidebar-right size="sm" variant="transparent" class="circle text-white mx-2 ml-auto">
       <b-icon icon="bell-fill"></b-icon>
     </b-button>
     <b-button variant="transparent" class="circle p-0" to="/perfil">
-      <b-avatar class="pointer" src="https://placekitten.com/300/300" size="3rem"></b-avatar>
+      <b-avatar class="pointer" src="https://placekitten.com/300/300" size="2rem"></b-avatar>
     </b-button>
   </b-navbar>
 </template>

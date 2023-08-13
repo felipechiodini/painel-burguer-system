@@ -18,8 +18,12 @@ import EditProduct from '@/views/Products/Update.vue'
 import DetailsProduct from '@/views/Products/Details.vue'
 import StoreProduct from '@/views/Products/Store.vue'
 import IndexProduct from '@/views/Products/Index.vue'
-import StoreProductReplacement from '@/views/StoreProductReplacement.vue'
-import StoreProductAdditional from '@/views/StoreProductAdditional.vue'
+import StoreProductReplacement from '@/views/Products/Replacement/Store.vue'
+import StoreProductAdditional from '@/views/Products/Additional/Store.vue'
+import StoreProductPrice from '@/views/Products/Price/Store.vue'
+import ComboRouters from './combo.js'
+
+console.log(ComboRouters)
 
 Vue.use(VueRouter)
 
@@ -28,6 +32,7 @@ const routes = [
     path: '/',
     component: Main,
     children: [
+      ...ComboRouters,
       {
         path: '/home',
         name: 'home',
@@ -59,7 +64,12 @@ const routes = [
         component: EditProduct,
       },
       {
-        path: 'produto/:product_id/substituicoes/nova',
+        path: 'produto/:product_id/preco/novo',
+        name: 'product.replacement',
+        component: StoreProductPrice,
+      },
+      {
+        path: 'produto/:product_id/substituicao/novo',
         name: 'product.replacement',
         component: StoreProductReplacement,
       },

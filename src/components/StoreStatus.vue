@@ -1,20 +1,23 @@
 <template>
-  <div>
-    <b-icon icon="circle-fill" :class="status ? 'text-success' : 'text-danger'" />
+  <b-card class="shadow">
+    <b-icon icon="circle-fill" :class="open ? 'text-success' : 'text-danger'" />
     <span class="mx-2">{{ label }}</span>
-  </div>
+  </b-card>
 </template>
 
 <script>
 export default {
   props: {
     status: {
-      type: Boolean
+      type: String
     }
   },
   computed: {
+    open() {
+      return this.status === 'open' ? true : false
+    },
     label() {
-      return this.status ? 'Loja aberta' : 'Loja fechada'
+      return this.open ? 'Loja Aberta' : 'Loja Fechada'
     }
   }
 }

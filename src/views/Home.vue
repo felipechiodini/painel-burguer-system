@@ -1,43 +1,63 @@
 <template>
-  <div class="container-fluid p-3" v-if="home">
-
-    <div class="d-flex">
-      <store-status class="border bg-white rounded shadow p-3 mx-2" :status="home.store_status" />
-      <div v-for="(chart, key) in home.dashboard.charts" :key="key" class="border bg-white rounded shadow p-4">
-        <h6>{{ chart.name }}</h6>
-        <apexchart :type="chart.config.type" :width="chart.config.width" :options="chart.options" :series="chart.series"></apexchart>
-      </div>
-    </div>
-
+  <div class="d-flex m-4">
+    <store-status class="mr-2" status="open" />
   </div>
 </template>
 
 <script>
 import StoreStatus from '@/components/StoreStatus.vue'
-import { mapGetters } from 'vuex'
-import Api from '@/js/Api'
+import Card from '@/components/Utils/Card.vue'
 
 export default {
   name: 'Home',
   components: {
     StoreStatus,
+    Card
   },
   data: () => {
     return {
-      home: null
+      home: null,
+      series: [{
+        name: "Desktops",
+        data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+      }],
+      chartOptions: {
+        chart: {
+          height: 350,
+          type: 'line',
+          zoom: {
+            enabled: false
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          curve: 'straight'
+        },
+        title: {
+          text: 'Vendas',
+          align: 'left'
+        },
+        grid: {
+          row: {
+            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+            opacity: 0.5
+          },
+        },
+        xaxis: {
+          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+        }
+      },
     }
   },
   computed: {
-    ...mapGetters('store', ['store'])
+    // ...mapGetters('store', ['store'])
   },
   mounted() {
-    this.load()
   },
   methods: {
-    async load() {
-      const { data } = await Api.get('home')
-      this.home = data
-    }
+    
   }
 }
 </script>

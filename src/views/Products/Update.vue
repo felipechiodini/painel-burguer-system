@@ -1,16 +1,6 @@
 <template>
   <div class="container">
-
-    <div class="row my-4">
-      <div class="col-auto">
-        <h5>{{ product.name }}</h5>
-      </div>
-      <div class="col-auto ml-auto">
-        <b-button variant="danger">Deletar</b-button>
-      </div>
-    </div>
-
-    <b-card class="shadow mb-3">
+    <b-card class="shadow my-3">
       <template v-if="loading === false">
         <div class="row mb-2">
           <div class="col-auto">

@@ -5,8 +5,8 @@
         <h5>Novo Produto</h5>
       </div>
     </template>
-    <label for="">Nome</label>
-    <b-input v-model="product.name"></b-input>
+    <label for="combo-name">Nome</label>
+    <b-input id="combo-name" v-model="product.name"></b-input>
     <label for="">Descrição</label>
     <b-input v-model="product.description"></b-input>
     <template #footer>
@@ -17,6 +17,7 @@
 
 <script>
 import Api from '@/js/Api'
+
 export default {
   data: () => {
     return {

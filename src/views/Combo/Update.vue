@@ -11,8 +11,14 @@
     </div>
 
     <b-card class="shadow mb-3">
-      <template v-if="loading === false">
-        <div class="row mb-2">
+      <template #header>
+        <div class="d-flex align-items-center">
+          <h5>Combo</h5>
+          <b-button class="ml-auto" variant="primary" size="sm" to="combos/novo">Novo Combo</b-button>
+        </div>
+      </template>
+      <template>
+        <div class="row mb-rs2">
           <div class="col-auto">
             <label for="product-active">Ativo</label>
             <b-form-checkbox id="product-active" switch v-model="product.active"></b-form-checkbox>
@@ -25,9 +31,6 @@
         <label for="product-description">Descrição</label>
         <b-textarea id="product-description" rows="5" v-model="product.description"></b-textarea>
       </template>
-      <template v-else>
-        <b-icon icon="spin"></b-icon>
-      </template>
       <template #footer>
         <b-button class="d-flex ml-auto" size="sm" variant="primary" @click="save()">Salvar</b-button>
       </template>
@@ -36,14 +39,14 @@
     <b-card class="shadow mb-3">
       <template #header>
         <div class="d-flex align-items-center">
-          <span>Imagens</span>
-          <b-button class="ml-auto" variant="primary" size="sm">Nova Imagem</b-button>
+          <span>Opções</span>
+          <b-button class="ml-auto" variant="primary" size="sm">Nova Opção</b-button>
         </div>
       </template>
       <div class="table-responsive">
         <table class="w-100">
           <tr>
-            <th>Image</th>
+            <th>Produto</th>
             <th>Ordem</th>
           </tr>
           <tr v-for="(image, key) in images" :key="key">
@@ -53,66 +56,6 @@
         </table>
       </div>
     </b-card>
-
-    <b-card class="shadow mb-3">
-      <template #header>
-        <div class="d-flex align-items-center">
-          <h5>Adicionais</h5>
-          <b-button class="ml-auto" variant="primary" size="sm" :to="'product/1/substituicao/nova'">Novo Adicional</b-button>
-        </div>
-      </template>
-      <div class="table-responsive">
-        <table class="w-100">
-          <tr>
-            <th>Nome</th>
-            <th></th>
-          </tr>
-          <tr v-for="(replacement, key) in replacements" :key="key">
-            <td>{{ replacement.name }}</td>
-            <td>{{ replacement.value }}</td>
-          </tr>
-        </table>
-      </div>
-    </b-card>
-
-    <b-card class="shadow mb-3">
-      <template #header>
-        <div class="d-flex align-items-center">
-          <h5>Substituições</h5>
-          <b-button class="ml-auto" variant="primary" size="sm" :to="'product/1/substituicao/nova'">Nova Substituição</b-button>
-        </div>
-      </template>
-      <div class="table-responsive">
-        <table class="w-100">
-          <tr>
-            <th>Nome</th>
-            <th>Substituição</th>
-          </tr>
-          <tr v-for="(replacement, key) in replacements" :key="key">
-            <td>{{ replacement.name }}</td>
-            <td>{{ replacement.value }}</td>
-          </tr>
-        </table>
-      </div>
-    </b-card>
-
-    <b-card class="shadow mb-3">
-      <template #header>
-        <div class="d-flex align-items-center">
-          <span>Preços</span>
-          <b-button class="ml-auto" variant="primary" size="sm">Novo Preço</b-button>
-        </div>
-      </template>
-      <table>
-        <tr>
-          <th>Preço</th>
-        </tr>
-        <tr>
-          <td>{{ 20 }}</td>
-        </tr>
-      </table>
-    </b-card>
-
   </div>
 </template>
 

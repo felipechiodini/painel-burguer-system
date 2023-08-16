@@ -1,5 +1,4 @@
 import Axios from 'axios'
-import Storage from '@/js/Storage'
 import Router from '@/router'
 import store from '@/store'
 
@@ -12,11 +11,8 @@ const Api = Axios.create({
 })
 
 Api.interceptors.request.use(function (config) {
-  const token = Storage.get('token')
-  if (token) config.headers['Authorization'] = 'Bearer ' + token
-  
-  if (store.getters['store/store']) {
-    config.headers['x-store-uuid'] = store.getters['store/store'].id
+  if (store.getters['user/isLoggedin']) {
+    config.headers.Authorization = 'Bearer ' + store.getters['user/getToken']
   }
 
   return config
@@ -24,12 +20,12 @@ Api.interceptors.request.use(function (config) {
   return Promise.reject(error)
 })
 
-Api.interceptors.response.use((response) => {
+Api.interceptors.response.use(function (response) {
   return response
-}, (error) => {
+}, function (error) {
   if (error.response.status === 401) {
-    Storage.clear('token')
-    Router.push({ name: 'login' })
+    localStorage.clear()
+    Router.push({ name: 'auth.login' })
   }
 
   if (error.response.status === 503) {
@@ -38,5 +34,6 @@ Api.interceptors.response.use((response) => {
 
   return Promise.reject(error)
 })
+
 
 export default Api

@@ -1,63 +1,68 @@
 <template>
-  <div class="d-flex justify-content-center align-items-center" style="height: 100vh;" @keypress.enter="login()">
-    <div class="row shadow-lg p-4 mx-3 bg-white rounded">
-      <div class="col-12 p-0">
-        <label class="m-0" for="email">E-mail</label>
-        <b-input id="email" v-model="form.email"></b-input>
+  <div class="container" style="height: 100vh;">
+    <div class="d-flex flex-column justify-content-center align-items-center h-100">
+      <div class="bg-white rounded p-5 w-100 shadow-lg" style="max-width: 500px;">
+        <div class="text-center text-muted mb-4">
+          <span>Entre com suas credenciais</span>
+        </div>
+        <div @keypress.enter="onSubmit()">
+          <b-input class="input-group-alternative" placeholder="Email" type="email" v-model="email" />
+          <b-input class="input-group-alternative my-2" placeholder="Senha" type="password" v-model="password" />
+          <b-button variant="primary" type="submit" class="bg-gradient-live w-100" :disabled="loging === true" @click="onSubmit()">
+            <b-spinner small v-if="loging === true"></b-spinner> Entrar
+          </b-button>
+          <b-button variant="secondary" class="w-100 mt-2" to="/criar-conta">Criar Conta</b-button>
+        </div>
       </div>
-      <div class="col-12 p-0 mt-3">
-        <label class="m-0" for="password">Senha</label>
-        <b-input id="password" type="password" v-model="form.password"></b-input>
+      <div class="mt-3">
+        <span class="pointer" @click="showModalForgetPassword()">Esqueci minha senha.</span>
       </div>
-      <b-button class="w-100 mt-3" variant="danger" @click="login()">Entrar</b-button>
-      <b-button class="w-100 mt-3" @click="goToRegister()">Crie sua conta, é grátis</b-button>
-      <a @click="recoveryPassword()">Esqueci a senha</a>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import Api from '@/js/Api'
-import Storage from '@/js/Storage'
 
 export default {
-  name: 'Auth',
   data: () => {
     return {
-      form: {
-        email: null,
-        password: null
-      },
-      loading: false
+      email: null,
+      password: null,
+      loging: false
     }
   },
   methods: {
-    login() {
-      this.loading = true
-      Api.post('auth/login', this.form).then(({ data }) => {
-        Storage.set('token', data.access_token)
+    ...mapActions('user', ['setToken', 'setUser']),
+    setLoging(value) {
+      this.loging = value
+    },
+    onSubmit() {
+      this.setLoging(true)
+
+      Api.post('auth/login', {
+        email: this.email,
+        password: this.password,
+      }).then(({ data }) => {
+        this.setToken(data.access_token)
         this.$router.push({ name: 'home' })
+
+        Api.get('auth/me').then(({ data }) => {
+          this.setUser(data)
+        })
       }).catch((error) => {
-        this.$bvToast.toast(error.data?.message ?? 'Ocorreu um erro', {
-          title: 'Erro',
-          variant: 'danger'
+        this.$bvToast.toast(error.response.data.error, {
+          title: 'Falha',
+          variant: 'danger',
+          autoHideDelay: 5000,
         })
       }).finally(() => {
-        this.loading = false
+        this.setLoging(false)
       })
     },
-    goToRegister() {
-      this.$router.push({
-        name: 'auth.register'
-      })
-    },
-    recoveryPassword() {
-      Api.post('').then(({ data }) => {
-        this.$bvToast.toast(data.message, {
-          title: 'Sucesso',
-          variant: 'sucess'
-        })
-      })
+    showModalForgetPassword() {
+      this.$bvModal.show('forgetPassword')
     }
   }
 }

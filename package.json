@@ -19,6 +19,7 @@
     "pusher-js": "^8.3.0",
     "socket.io": "^4.6.1",
     "socket.io-client": "^4.6.1",
+    "v-mask": "^2.3.0",
     "vue": "^2.7.14",
     "vue-apexcharts": "^1.6.2",
     "vue-meta": "^2.4.0",

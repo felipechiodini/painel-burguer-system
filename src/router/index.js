@@ -15,6 +15,7 @@ import StoreProductAdditional from '@/views/Products/Additional/Store.vue'
 import StoreProductPrice from '@/views/Products/Price/Store.vue'
 import ComboRouters from './combo.js'
 import ProductRouters from './product.js'
+import store from '@/store'
 
 Vue.use(VueRouter)
 
@@ -22,6 +23,10 @@ const routes = [
   {
     path: '/',
     component: Main,
+    beforeEnter: (to, from, next) => {
+      if (store.getters['user/isLoggedin']) next()
+      else next('/login')
+    },
     children: [
       {
         path: '/',
@@ -75,7 +80,11 @@ const routes = [
   {
     path: '/login',
     name: 'auth.login',
-    component: Login
+    component: Login,
+    beforeEnter: (to, from, next) => {
+      if (store.getters['user/isLoggedin']) next('/')
+      else next()
+    }
   },
   {
     path: '/criar-conta',
@@ -94,10 +103,5 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
-// router.beforeEach((to, from, next) => {
-//   if (to.name !== 'login' && !isAuthenticate()) next({ name: 'login' })
-//   else next()
-// })
 
 export default router

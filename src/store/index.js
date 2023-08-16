@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import user from './modules/user'
 import store from './modules/store'
 import createPersistedState from 'vuex-persistedstate'
 
@@ -15,6 +16,7 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
+    user,
     store
   },
   plugins: [

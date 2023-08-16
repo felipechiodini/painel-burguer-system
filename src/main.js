@@ -2,8 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import VueApexCharts from 'vue-apexcharts'
-import Echo from 'laravel-echo'
-import Pusher from 'pusher-js'
+import { VueMaskDirective } from 'v-mask'
 
 Vue.config.productionTip = false
 
@@ -17,6 +16,7 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueApexCharts)
 Vue.component('apexchart', VueApexCharts)
+Vue.directive('mask', VueMaskDirective);
 
 new Vue({
   router,

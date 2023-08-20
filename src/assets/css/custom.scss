@@ -2,26 +2,24 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
-$body-bg: #ecebe5;
-$border-radius: 0.3rem;
+$body-bg: #e2e2e2;
+$border-radius: 0.15rem;
 
 $theme-colors: (
-    "dark": #000802,
+    "dark": #434D36,
     "white": #ffffff,
-    "light": #b0b1e9,
-    "primary": #302c5c,
-    "secondary": #74689d,
+    "light": #e2e2e2,
+    "primary": #284703,
+    "secondary": #4A701C,
     "info": #f84348,
     "success": #15995c,
     "warning": #ddc917,
     "danger": #ea220a,
 );
 
-
 .pointer {
     cursor: pointer;
 }
-
 
 // Then import Bootstrap and BootstrapVue SCSS files (order is important)
 @import 'node_modules/bootstrap/scss/bootstrap.scss';

@@ -1,11 +1,13 @@
-import Index from '@/views/Products/Index.vue'
-import Store from '@/views/Products/Store.vue'
-import Update from '@/views/Products/Update.vue'
+import Index from '@/views/Product/Index.vue'
+import Store from '@/views/Product/Store.vue'
+import Update from '@/views/Product/Update.vue'
 
 export default [{
     path: 'produtos',
     name: 'product.index',
     component: Index,
+    label: 'Produtos',
+    menu: true
   },
   {
     path: 'produtos/novo',

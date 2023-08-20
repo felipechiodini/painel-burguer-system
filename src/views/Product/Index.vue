@@ -15,17 +15,19 @@
           <th>Descrição</th>
           <th>Preço</th>
         </tr>
-        <tr v-for="(product, key) in products" :key="key">
-          <td>{{ product.name }}</td>
-          <td>{{ product.name }}</td>
-          <td>{{ product.name }}</td>
-          <td>{{ product.name }}</td>
-          <td>{{ product.description }}</td>
-          <td class="d-flex">
-            <b-button @click="goToEdit(product)" size="sm" variant="dark"><i class="fas fa-edit"></i></b-button>
-            <b-button @click="showModalDelete(product)" class="ml-1" size="sm" variant="danger"><i class="fas fa-trash"></i></b-button>
-          </td>
-        </tr>
+        <template v-if="loading === false && error === false">
+          <tr v-for="(product, key) in page?.data" :key="key">
+            <td>{{ product.name }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td class="d-flex">
+              <b-button @click="goToEdit(product)" size="sm" variant="dark"><i class="fas fa-edit"></i></b-button>
+              <b-button @click="showModalDelete(product)" class="ml-1" size="sm" variant="danger"><i class="fas fa-trash"></i></b-button>
+            </td>
+          </tr>
+        </template>
       </table>
     </div>
     <modal-delete name="produto" :path="`product/${selectedProduct?.id}`"></modal-delete>
@@ -34,6 +36,7 @@
 
 <script>
 import ModalDelete from '@/components/ModalDelete.vue'
+import { index } from '@/js/Product.js'
 
 export default {
   components: {
@@ -41,19 +44,26 @@ export default {
   },
   data: () => {
     return {
-      products: [
-        { name: 'Teste', description: 'Descrição' },
-        { name: 'Teste', description: 'Descrição' },
-        { name: 'Teste', description: 'Descrição' },
-        { name: 'Teste', description: 'Descrição' },
-        { name: 'Teste', description: 'Descrição' },
-        { name: 'Teste', description: 'Descrição' },
-        { name: 'Teste', description: 'Descrição' },
-      ],
+      page: null,
+      loading: false,
+      error: false,
       selectedProduct: null
     }
   },
+  mounted() {
+    this.load()
+  },
   methods: {
+    load() {
+      this.loading = true
+      index(1).then(({ data }) => {
+        this.page = data.page
+      }).catch(() => {
+        this.error = true
+      }).finally(() => {
+        this.loading = false
+      })
+    },
     showModalDelete(product) {
       this.selectedProduct = product
       this.$bvModal.show('modal-delete')

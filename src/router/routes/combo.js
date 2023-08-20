@@ -5,7 +5,9 @@ import Update from '@/views/Combo/Update.vue'
 export default [{
     path: 'combos',
     name: 'combo.index',
-    component: Index
+    component: Index,
+    label: 'Combos',
+    menu: true
   },
   {
     path: 'combos/novo',

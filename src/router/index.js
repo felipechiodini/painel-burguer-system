@@ -6,15 +6,16 @@ import Register from '../views/Register.vue'
 import Home from '../views/Home.vue'
 import Orders from '../views/Orders.vue'
 import Configuration from '../views/Configuration.vue'
-import Waiters from '../views/Waiters.vue'
-import Cards from '../views/Cards.vue'
 import NotFound from '../views/NotFound.vue'
 import Profile from '../views/Profile.vue'
-import StoreProductReplacement from '@/views/Products/Replacement/Store.vue'
-import StoreProductAdditional from '@/views/Products/Additional/Store.vue'
-import StoreProductPrice from '@/views/Products/Price/Store.vue'
-import ComboRouters from './combo.js'
-import ProductRouters from './product.js'
+import StoreProductReplacement from '@/views/Product/Replacement/Store.vue'
+import StoreProductAdditional from '@/views/Product/Additional/Store.vue'
+import StoreProductPrice from '@/views/Product/Price/Store.vue'
+import CardRouters from './routes/card.js'
+import WaiterRouters from './routes/waiter.js'
+import BannerRouters from './routes/banner.js'
+import ComboRouters from './routes/combo.js'
+import ProductRouters from './routes/product.js'
 import store from '@/store'
 
 Vue.use(VueRouter)
@@ -31,7 +32,9 @@ const routes = [
       {
         path: '/',
         name: 'home',
-        component: Home
+        component: Home,
+        menu: true,
+        label: 'Home'
       },
       {
         path: '/perfil',
@@ -59,20 +62,13 @@ const routes = [
         component: StoreProductAdditional,
       },
       {
-        path: '/garcons',
-        name: 'waiter.index',
-        component: Waiters
-      },
-      {
-        path: '/comandas',
-        name: 'card.index',
-        component: Cards
-      },
-      {
         path: '/configuracoes',
         name: 'store.config',
         component: Configuration
       },
+      ...CardRouters,
+      ...WaiterRouters,
+      ...BannerRouters,
       ...ProductRouters,
       ...ComboRouters,
     ]

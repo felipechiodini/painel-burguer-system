@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span>dwajdiowa</span>
+    <span>index</span>
   </div>
 </template>
 

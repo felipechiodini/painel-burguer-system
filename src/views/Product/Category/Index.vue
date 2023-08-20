@@ -1,7 +1,9 @@
 <template>
+  
   <div>
-    <span>atualziar agarcon</span>
+    
   </div>
+
 </template>
 
 <script>

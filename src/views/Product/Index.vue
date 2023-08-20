@@ -1,25 +1,19 @@
 <template>
   <b-card class="m-3 shadow">
-    <template #header>
-      <div class="d-flex align-items-center">
-        <h5>Produtos</h5>
-        <b-button class="ml-auto" variant="primary" size="sm" to="produtos/novo">Novo Produto</b-button>
-      </div>
-    </template>
+    <div class="d-flex align-items-center" slot="header">
+      <h5 class="m-0">Produtos</h5>
+      <b-button class="ml-auto" variant="primary" size="sm" to="produtos/novo">Novo Produto</b-button>
+    </div>
     <div class="table-responsive">
       <table class="table w-100 border">
         <tr>
           <th>ID</th>
-          <th>Foto</th>
           <th>Nome</th>
           <th>Descrição</th>
-          <th>Preço</th>
         </tr>
         <template v-if="loading === false && error === false">
           <tr v-for="(product, key) in page?.data" :key="key">
-            <td>{{ product.name }}</td>
-            <td>{{ product.name }}</td>
-            <td>{{ product.name }}</td>
+            <td>{{ product.id }}</td>
             <td>{{ product.name }}</td>
             <td>{{ product.description }}</td>
             <td class="d-flex">
@@ -36,7 +30,7 @@
 
 <script>
 import ModalDelete from '@/components/ModalDelete.vue'
-import { index } from '@/js/Product.js'
+import Api from '@/js/Api'
 
 export default {
   components: {
@@ -56,7 +50,7 @@ export default {
   methods: {
     load() {
       this.loading = true
-      index(1).then(({ data }) => {
+      Api.get('products').then(({ data }) => {
         this.page = data.page
       }).catch(() => {
         this.error = true
@@ -70,7 +64,7 @@ export default {
     },
     goToEdit(product) {
       this.$router.push({
-        name: 'product.edit',
+        name: 'product.update',
         params: {
           product_id: product.id
         }

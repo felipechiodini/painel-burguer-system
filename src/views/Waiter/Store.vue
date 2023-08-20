@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span>dwajdiowa</span>
+    <span>salvar garcon</span>
   </div>
 </template>
 

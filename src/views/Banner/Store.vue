@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span>dwajdiowa</span>
+    <span>store</span>
   </div>
 </template>
 

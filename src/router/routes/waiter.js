@@ -10,12 +10,12 @@ export default [{
     menu: true
   },
   {
-    path: 'produtos/novo',
+    path: 'garcons/novo',
     name: 'waiter.store',
     component: Store
   },
   {
-    path: 'produto/:banner_id/editar',
+    path: 'garcons/:waiter_id',
     name: 'waiter.update',
     component: Update
   }

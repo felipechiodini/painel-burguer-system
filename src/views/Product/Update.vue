@@ -47,23 +47,25 @@
     <b-card class="shadow mb-3">
       <template #header>
         <div class="d-flex align-items-center">
-          <h5>Adicionais</h5>
-          <b-button class="ml-auto" variant="primary" size="sm" :to="'product/1/substituicao/nova'">Novo Adicional</b-button>
+          <span>Imagens</span>
+          <b-button class="ml-auto" variant="primary" size="sm">Nova Imagem</b-button>
         </div>
       </template>
       <div class="table-responsive">
         <table class="w-100">
           <tr>
-            <th>Nome</th>
-            <th></th>
+            <th>Image</th>
+            <th>Ordem</th>
           </tr>
-          <tr v-for="(replacement, key) in replacements" :key="key">
-            <td>{{ replacement.name }}</td>
-            <td>{{ replacement.value }}</td>
+          <tr v-for="(image, key) in imagens?.page" :key="key">
+            <td><img :src="image.src"></td>
+            <td>{{ image.order }}</td>
           </tr>
         </table>
       </div>
     </b-card>
+
+    <Photo />
 
     <b-card class="shadow mb-3">
       <template #header>
@@ -108,10 +110,11 @@
 
 <script>
 import Api from '@/js/Api'
+import Photo from '@/views/Product/Photo/Index.vue'
 
 export default {
   components: {
-
+    Photo
   },
   data: () => {
     return {

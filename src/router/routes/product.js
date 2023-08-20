@@ -11,12 +11,12 @@ export default [{
   },
   {
     path: 'produtos/novo',
-    name: 'product.new',
+    name: 'product.store',
     component: Store,
   },
   {
-    path: 'produto/:product_id/editar',
-    name: 'product.edit',
+    path: 'produto/:product_id',
+    name: 'product.update',
     component: Update,
   }
 ]

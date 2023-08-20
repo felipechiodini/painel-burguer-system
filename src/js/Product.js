@@ -1,11 +1,20 @@
 import Api from "./Api";
 
+class Product {
+
+  index(page) {
+    return Api.get(`products`, {
+      params: {
+        page
+      }
+    })
+  }
+  
+  store(data) {
+    return Api.post(`products`, data)
+  }
+
+}
 
 
-    export const index = (page) => {
-        return Api.get(`product`, {
-            params: {
-                page
-            }
-        })
-    }
+export default Product

@@ -10,12 +10,12 @@ export default [{
     menu: true
   },
   {
-    path: 'produtos/novo',
+    path: 'banners/novo',
     name: 'banner.store',
     component: Store
   },
   {
-    path: 'produto/:banner_id/editar',
+    path: 'banners/banner_id',
     name: 'banner.update',
     component: Update
   }

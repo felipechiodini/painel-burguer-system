@@ -10,12 +10,12 @@ export default [{
     menu: true
   },
   {
-    path: 'combos/novo',
+    path: 'comandas/novo',
     name: 'card.store',
     component: Store
   },
   {
-    path: 'combos/:combo_id',
+    path: 'comandas/:card_id',
     name: 'card.update',
     component: Update
   }

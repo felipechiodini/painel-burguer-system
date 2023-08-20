@@ -11,6 +11,8 @@ import Profile from '../views/Profile.vue'
 import StoreProductReplacement from '@/views/Product/Replacement/Store.vue'
 import StoreProductAdditional from '@/views/Product/Additional/Store.vue'
 import StoreProductPrice from '@/views/Product/Price/Store.vue'
+import PhotoRouters from './routes/photo.js'
+import CategoryRouters from './routes/category.js'
 import CardRouters from './routes/card.js'
 import WaiterRouters from './routes/waiter.js'
 import BannerRouters from './routes/banner.js'
@@ -66,9 +68,11 @@ const routes = [
         name: 'store.config',
         component: Configuration
       },
+      ...CategoryRouters,
       ...CardRouters,
       ...WaiterRouters,
       ...BannerRouters,
+      ...PhotoRouters,
       ...ProductRouters,
       ...ComboRouters,
     ]

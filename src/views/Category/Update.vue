@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span>atualziar agarcon</span>
+    <span>Atualizar categoria</span>
   </div>
 </template>
 

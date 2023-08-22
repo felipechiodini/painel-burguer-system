@@ -32,7 +32,7 @@ const routes = [
     },
     children: [
       {
-        path: '/',
+        path: '',
         name: 'home',
         component: Home,
         menu: true,

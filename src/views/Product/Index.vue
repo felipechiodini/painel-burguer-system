@@ -50,7 +50,7 @@ export default {
   methods: {
     load() {
       this.loading = true
-      Api.get('products').then(({ data }) => {
+      Api.get('product').then(({ data }) => {
         this.page = data.page
       }).catch(() => {
         this.error = true

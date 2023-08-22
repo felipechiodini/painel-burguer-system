@@ -151,7 +151,7 @@ export default {
       }
     },
     loadPrice() {
-      Api.get(`products/${this.$route.params.id}/prices`).then(({ data }) => {
+      Api.get(`product/${this.$route.params.id}/prices`).then(({ data }) => {
         this.prices = data
       }).catch((error) => {
 

@@ -43,7 +43,7 @@ export default {
       })
     },
     save() {
-      Api.post('products', this.product).then(({ data }) => {
+      Api.post('product', this.product).then(({ data }) => {
         this.$bvToast.toast(data.message, { title: 'Sucesso', variant: 'success' })
       }).catch((error) => {
         this.$bvToast.toast(error.response.data.message, { title: 'Falha', variant: 'danger' })

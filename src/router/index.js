@@ -4,13 +4,10 @@ import Main from '../Layout/Main.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Home from '../views/Home.vue'
-import Orders from '../views/Orders.vue'
 import Configuration from '../views/Configuration.vue'
 import NotFound from '../views/NotFound.vue'
 import Profile from '../views/Profile.vue'
-import StoreProductReplacement from '@/views/Product/Replacement/Store.vue'
-import StoreProductAdditional from '@/views/Product/Additional/Store.vue'
-import StoreProductPrice from '@/views/Product/Price/Store.vue'
+import UserRouters from './routes/user.js'
 import PhotoRouters from './routes/photo.js'
 import CategoryRouters from './routes/category.js'
 import CardRouters from './routes/card.js'
@@ -18,6 +15,7 @@ import WaiterRouters from './routes/waiter.js'
 import BannerRouters from './routes/banner.js'
 import ComboRouters from './routes/combo.js'
 import ProductRouters from './routes/product.js'
+import OrderRouters from './routes/order.js'
 import store from '@/store'
 
 Vue.use(VueRouter)
@@ -44,30 +42,11 @@ const routes = [
         component: Profile
       },
       {
-        path: '/pedidos',
-        name: 'orders',
-        component: Orders
-      },
-      {
-        path: 'produto/:product_id/preco/novo',
-        name: 'product.replacement',
-        component: StoreProductPrice,
-      },
-      {
-        path: 'produto/:product_id/substituicao/novo',
-        name: 'product.replacement',
-        component: StoreProductReplacement,
-      },
-      {
-        path: 'produto/:product_id/adicional/novo',
-        name: 'product.replacement',
-        component: StoreProductAdditional,
-      },
-      {
         path: '/configuracoes',
         name: 'store.config',
         component: Configuration
       },
+      ...UserRouters,
       ...CategoryRouters,
       ...CardRouters,
       ...WaiterRouters,
@@ -75,6 +54,7 @@ const routes = [
       ...PhotoRouters,
       ...ProductRouters,
       ...ComboRouters,
+      ...OrderRouters,
     ]
   },
   {

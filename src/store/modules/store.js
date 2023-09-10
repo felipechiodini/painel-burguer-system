@@ -1,29 +1,22 @@
-import Api from "@/js/Api"
-
 const state = {
   store: null
 }
 
 const getters = {
-  store: (state) => {
+  getStore: (state) => {
     return state.store
   }
 }
 
 const actions = {
-  async loadStore({ commit }, store) {
-    try {
-      const { data } = await Api.get(`/store/${store}`)
-      commit('setStore', data)
-    } catch (error) {
-      alert('error')
-    }
-  },
+  setStore({ commit }, payload) {
+    commit('setStore', payload)
+  }
 }
 
 const mutations = {
-  setStore(state, store) {
-    state.store = store
+  setStore(state, payload) {
+    state.store = payload
   }
 }
 

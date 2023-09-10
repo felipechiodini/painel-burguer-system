@@ -1,41 +1,31 @@
 <template>
   <b-card class="m-3 shadow">
     <div class="d-flex align-items-center" slot="header">
-      <h5 class="m-0">Produtos</h5>
-      <b-button class="ml-auto" variant="primary" size="sm" to="produtos/novo">Novo Produto</b-button>
+      <h5 class="m-0">Pedidos</h5>
     </div>
     <div class="table-responsive">
       <table class="table w-100 border">
         <tr>
           <th>ID</th>
           <th>Nome</th>
-          <th>Descrição</th>
+          <th>Endereço</th>
         </tr>
         <template v-if="loading === false && error === false">
-          <tr v-for="(product, key) in page?.data" :key="key">
-            <td>{{ product.id }}</td>
-            <td>{{ product.name }}</td>
-            <td>{{ product.description }}</td>
-            <td class="d-flex">
-              <b-button @click="goToEdit(product)" size="sm" variant="dark"><i class="fas fa-edit"></i></b-button>
-              <b-button @click="showModalDelete(product)" class="ml-1" size="sm" variant="danger"><i class="fas fa-trash"></i></b-button>
-            </td>
+          <tr v-for="(order, key) in page?.data" :key="key">
+            <td>{{ order.id }}</td>
+            <td>{{ order.customer.name }}</td>
+            <td>{{ order.description }}</td>
           </tr>
         </template>
       </table>
     </div>
-    <modal-delete name="produto" :path="`product/${selectedProduct?.id}`"></modal-delete>
   </b-card>
 </template>
 
 <script>
-import ModalDelete from '@/components/ModalDelete.vue'
 import ApiStore from '@/js/ApiStore'
 
 export default {
-  components: {
-    ModalDelete
-  },
   data: () => {
     return {
       page: null,
@@ -50,7 +40,7 @@ export default {
   methods: {
     load() {
       this.loading = true
-      ApiStore.get('product').then(({ data }) => {
+      ApiStore.get('order').then(({ data }) => {
         this.page = data.page
       }).catch(() => {
         this.error = true

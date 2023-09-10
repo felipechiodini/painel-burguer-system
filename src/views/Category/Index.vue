@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import Api from '@/js/Api'
+import ApiStore from '@/js/ApiStore'
 import CardHeader from '@/components/CardHeader.vue'
 import CustomTable from '@/components/CustomTable.vue'
 
@@ -48,7 +48,7 @@ export default {
   methods: {
     load() {
       this.loading = true
-      Api.get('category').then(({ data }) => {
+      ApiStore.get('category').then(({ data }) => {
         this.page = data.page
       }).finally(() => {
         this.loading = false

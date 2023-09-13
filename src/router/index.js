@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Main from '../Layout/Main.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
+import Store from '../views/Store.vue'
 import Home from '../views/Home.vue'
 import Configuration from '../views/Configuration.vue'
 import NotFound from '../views/NotFound.vue'
@@ -23,6 +24,11 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    component: Store
+  },
+  {
+    path: '/:store_slug',
+    name: 'store.index',
     component: Main,
     beforeEnter: (to, from, next) => {
       if (store.getters['user/isLoggedin']) next()

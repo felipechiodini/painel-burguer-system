@@ -2,7 +2,9 @@
   <div class="d-flex">
     <b-sidebar bg-variant="white" id="sidebar-left" left shadow>
       <div class="d-flex flex-column p-3">
-        <b-button class="mb-2" :to="'/' + item.path" v-for="(item, key) in menuItems" :key="key">{{ item.label }}</b-button>
+        <b-button class="mb-2" :to="'/' + item.path" v-for="(item, key) in menuItems" :key="key">
+          {{ item.label }}
+        </b-button>
       </div>
     </b-sidebar>
     <div class="w-100">
@@ -21,7 +23,7 @@ export default {
   },
   computed: {
     menuItems() {
-      return this.$router.options.routes[0].children.filter(route => route.menu)
+      return this.$router.options.routes[1].children.filter(route => route.menu)
     }
   }
 }

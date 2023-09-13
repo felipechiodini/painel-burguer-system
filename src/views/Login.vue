@@ -45,7 +45,7 @@ export default {
       email: null,
       password: null,
       loging: false,
-      mode: 'reset-password'
+      mode: 'login'
     }
   },
   methods: {

@@ -2,7 +2,7 @@
   <div class="row m-0 doawjdowa">
     <div class="col-lg-4 col-md-6 col-sm-12 col-12 p-0 h-100">
         <div class="bg-white py-4 px-md-5 px-3 h-100 shadow-lg">
-          <div class="m-md-0 m-5">
+          <div class="m-md-0 m-3">
             <h1 class="display-4 mb-5">Burguer System</h1>
             <h4 class="mb-4">Entre para administrar</h4>
             <div v-if="mode === 'login'">
@@ -20,7 +20,7 @@
             <div v-else>
               <label class="mb-0" for="email">E-mail</label>
               <b-input id="email" type="email" v-model="email" />
-              <b-button class="btn-login w-100 mt-3" :disabled="loging === true" @click="onSubmit()">
+              <b-button class="btn-login w-100 mt-3" :disabled="loging === true" @click="sendMailChangePassword()">
                 <b-spinner small v-if="loging === true"></b-spinner> Enviar
               </b-button>
               <div class="text-center mt-4">

@@ -3,19 +3,19 @@ import Store from '@/views/Category/Store.vue'
 import Update from '@/views/Category/Update.vue'
 
 export default [{
-    path: 'categorias',
+    path: '/categorias',
     name: 'category.index',
     component: Index,
     label: 'Categorias',
     menu: true
   },
   {
-    path: 'categorias/novo',
+    path: '/categorias/novo',
     name: 'category.store',
     component: Store
   },
   {
-    path: 'categorias/:category_id',
+    path: '/categorias/:category_id',
     name: 'category.update',
     component: Update
   }

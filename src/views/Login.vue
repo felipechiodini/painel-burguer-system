@@ -2,10 +2,9 @@
   <div class="row m-0 doawjdowa">
     <div class="col-lg-4 col-md-6 col-sm-12 col-12 p-0 h-100">
         <div class="bg-white py-4 px-md-5 px-3 h-100 shadow-lg">
-          <div class="m-md-0 m-3">
             <h1 class="display-4 mb-5">Burguer System</h1>
             <h4 class="mb-4">Entre para administrar</h4>
-            <div v-if="mode === 'login'">
+            <div v-if="mode === 'login'" @keypress.enter="onSubmit()">
               <label class="mb-0" for="email">E-mail</label>
               <b-input id="email" type="email" v-model="email" />
               <label class="mb-0" for="password">Senha</label>
@@ -30,7 +29,6 @@
             <div class="mt-3 text-center">
               <span>Ainda não tem acesso? <a class="forget-password pointer" @click="changeMode('reset-password')"> Crie sua conta.</a></span>
             </div>
-          </div>
         </div>
     </div>
   </div>
@@ -62,7 +60,7 @@ export default {
         password: this.password,
       }).then(({ data }) => {
         this.setToken(data.access_token)
-        this.$router.push({ name: 'home' })
+        this.$router.push({ name: 'store.select' })
 
         Api.get('auth/me').then(({ data }) => {
           this.setUser(data)

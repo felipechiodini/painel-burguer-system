@@ -3,9 +3,8 @@ import VueRouter from 'vue-router'
 import Main from '../Layout/Main.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
-import Home from '../views/Home.vue'
-import Configuration from '../views/Configuration.vue'
 import NotFound from '../views/NotFound.vue'
+import Stores from '../views/Stores.vue'
 import Profile from '../views/Profile.vue'
 import UserRouters from './routes/user.js'
 import PhotoRouters from './routes/photo.js'
@@ -16,6 +15,7 @@ import BannerRouters from './routes/banner.js'
 import ComboRouters from './routes/combo.js'
 import ProductRouters from './routes/product.js'
 import OrderRouters from './routes/order.js'
+import GeneralRouters from './routes/general.js'
 import store from '@/store'
 
 Vue.use(VueRouter)
@@ -23,29 +23,22 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    name: 'store.select',
+    component: Stores,
+    beforeEnter: (to, from, next) => {
+      if (store.getters['user/isLoggedin']) next()
+      else next('/login')
+    }
+  },
+  {
+    path: '/store/:slug',
+    name: 'store.index',
     component: Main,
     beforeEnter: (to, from, next) => {
       if (store.getters['user/isLoggedin']) next()
       else next('/login')
     },
     children: [
-      {
-        path: '',
-        name: 'home',
-        component: Home,
-        menu: true,
-        label: 'Home'
-      },
-      {
-        path: '/perfil',
-        name: 'profile',
-        component: Profile
-      },
-      {
-        path: '/configuracoes',
-        name: 'store.config',
-        component: Configuration
-      },
       ...UserRouters,
       ...CategoryRouters,
       ...CardRouters,
@@ -55,7 +48,17 @@ const routes = [
       ...ProductRouters,
       ...ComboRouters,
       ...OrderRouters,
+      ...GeneralRouters
     ]
+  },
+  {
+    path: '/perfil',
+    name: 'user.profile',
+    component: Profile,
+    beforeEnter: (to, from, next) => {
+      if (store.getters['user/isLoggedin']) next()
+      else next('/login')
+    }
   },
   {
     path: '/login',

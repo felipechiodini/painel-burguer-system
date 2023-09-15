@@ -1,20 +1,24 @@
 $body-bg: #e2e2e2;
-$border-radius: 0.2rem;
+$border-radius: 0.5rem;
 
 $theme-colors: (
-    "dark": #434D36,
-    "white": #ffffff,
-    "light": #e2e2e2,
-    "primary": #284703,
-    "secondary": #4A701C,
-    "info": #f84348,
-    "success": #15995c,
-    "warning": #ddc917,
-    "danger": #ea220a,
+  "primary": #ea1d2c,
+  "dark": #434D36,
+  "white": #ffffff,
+  "light": #e2e2e2,
+  "secondary": #a22022,
+  "info": #f84348,
+  "success": #15995c,
+  "warning": #ddc917,
+  "danger": #ea220a,
 );
 
+body {
+  font-weight: 300 !important;
+}
+
 .pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 // Then import Bootstrap and BootstrapVue SCSS files (order is important)

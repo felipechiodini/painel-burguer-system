@@ -1,36 +1,37 @@
 <template>
-  <div class="container" style="height: 100vh;">
-    <div class="d-flex flex-column justify-content-center align-items-center h-100">
-      <template v-if="mode === 'login'">
-        <div class="text-center bg-white p-5 w-100 shadow" style="max-width: 450px;">
-          <span class="text-muted">Entre com suas credenciais</span>
-          <div @keypress.enter="onSubmit()">
-            <b-input class="my-2" placeholder="Email" type="email" v-model="email" />
-            <b-input class="my-2" placeholder="Senha" type="password" v-model="password" />
-            <b-button variant="primary" type="submit" class="bg-gradient-live w-100" :disabled="loging === true" @click="onSubmit()">
-              <b-spinner small v-if="loging === true"></b-spinner> Entrar
-            </b-button>
-            <b-button variant="secondary" class="w-100 mt-2" to="/criar-conta">Criar Conta</b-button>
+  <div class="row m-0 doawjdowa">
+    <div class="col-lg-4 col-md-6 col-sm-12 col-12 p-0 h-100">
+        <div class="bg-white py-4 px-md-5 px-3 h-100 shadow-lg">
+          <div class="m-md-0 m-5">
+            <h1 class="display-4 mb-5">Burguer System</h1>
+            <h4 class="mb-4">Entre para administrar</h4>
+            <div v-if="mode === 'login'">
+              <label class="mb-0" for="email">E-mail</label>
+              <b-input id="email" type="email" v-model="email" />
+              <label class="mb-0" for="password">Senha</label>
+              <b-input id="password" type="password" v-model="password" />
+              <b-button class="btn-login w-100 mt-3" :disabled="loging === true" @click="onSubmit()">
+                <b-spinner small v-if="loging === true"></b-spinner> Entrar
+              </b-button>
+              <div class="d-flex flex-column text-center">
+                <a class="forget-password my-4 pointer" @click="changeMode('reset-password')">Esqueci minha senha</a>
+              </div>
+            </div>
+            <div v-else>
+              <label class="mb-0" for="email">E-mail</label>
+              <b-input id="email" type="email" v-model="email" />
+              <b-button class="btn-login w-100 mt-3" :disabled="loging === true" @click="onSubmit()">
+                <b-spinner small v-if="loging === true"></b-spinner> Enviar
+              </b-button>
+              <div class="text-center mt-4">
+                <a class="forget-password pointer" @click="changeMode('login')">Entrar</a>
+              </div>
+            </div>
+            <div class="mt-3 text-center">
+              <span>Ainda não tem acesso? <a class="forget-password pointer" @click="changeMode('reset-password')"> Crie sua conta.</a></span>
+            </div>
           </div>
         </div>
-        <div class="mt-3">
-          <a class="pointer" @click="changeMode('reset-password')">Esqueci minha senha.</a>
-        </div>
-      </template>
-      <template v-else>
-        <div class="text-center bg-white p-5 w-100 shadow" style="max-width: 450px;">
-          <span class="text-muted">Informe seu e-mail</span>
-          <div @keypress.enter="sendMailChangePassword()">
-            <b-input class="my-2" placeholder="Email" type="email" v-model="email" />
-            <b-button variant="primary" type="submit" class="bg-gradient-live w-100" :disabled="loging === true" @click="sendMailChangePassword()">
-              <b-spinner small v-if="loging === true"></b-spinner> Enviar
-            </b-button>
-          </div>
-        </div>
-        <div class="mt-3">
-          <a class="pointer" @click="changeMode('login')">Entrar.</a>
-        </div>
-      </template>
     </div>
   </div>
 </template>
@@ -101,3 +102,24 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+.doawjdowa {
+  background-color: #ea8b25;
+  height: 100vh;
+}
+
+.btn-login {
+  padding: .9rem;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  border-radius: 50px;
+}
+
+.forget-password {
+  color: #006bc8;
+  font-size: 1.1rem;
+}
+
+</style>

@@ -39,6 +39,7 @@ const routes = [
       else next('/login')
     },
     children: [
+      ...GeneralRouters,
       ...UserRouters,
       ...CategoryRouters,
       ...CardRouters,
@@ -48,7 +49,6 @@ const routes = [
       ...ProductRouters,
       ...ComboRouters,
       ...OrderRouters,
-      ...GeneralRouters
     ]
   },
   {

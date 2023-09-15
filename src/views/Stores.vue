@@ -8,7 +8,7 @@
           <b-button size="sm" class="ml-auto">Nova Loja</b-button>
         </div>
         <template v-if="loading === false">
-          <div variant="secondary" class="mb-3 border border-dark shadow p-3 rounded pointer" v-for="(store, key) in stores" :key="key" @click="setStore(store)">
+          <div variant="secondary" class="mb-3 border border-dark shadow p-3 rounded pointer" v-for="(store, key) in stores" :key="key" @click="chooseStore(store)">
             <span class="mr-2">
               <i class="fas fa-store"></i>
             </span>
@@ -26,6 +26,7 @@
 <script>
 import NavBar from '@/components/NavBar.vue'
 import Api from '@/js/Api'
+import { mapActions } from 'vuex'
 
 export default {
   components: {
@@ -41,6 +42,7 @@ export default {
     this.load()
   },
   methods: {
+    ...mapActions('store', ['setStore']),
     load() {
       this.loading = true
       Api.get('store/all').then(({ data }) => {
@@ -49,13 +51,17 @@ export default {
         this.loading = false
       })
     },
-    setStore(store) {
+    chooseStore(store) {
+      this.setStore(store)
+
       this.$router.push({
         name: 'store.index',
         params: {
           slug: store.slug
         }
       })
+
+      this.$router.go()
     }
   }
 }

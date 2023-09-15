@@ -3,7 +3,7 @@ const state = {
 }
 
 const getters = {
-  getStore: (state) => {
+  store: (state) => {
     return state.store
   }
 }

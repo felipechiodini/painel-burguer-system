@@ -3,7 +3,7 @@ import Router from '@/router'
 import store from '@/store'
 
 const ApiStore = Axios.create({
-  baseURL: 'http://' + store.getters['store/getStore'] + '.' + process.env.VUE_APP_HOST,
+  baseURL: process.env.VUE_APP_API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json'
@@ -14,7 +14,9 @@ ApiStore.interceptors.request.use(function (config) {
   if (store.getters['user/isLoggedin']) {
     config.headers.Authorization = 'Bearer ' + store.getters['user/getToken']
   }
-  
+
+  config.baseURL += '/' + store.getters['store/store'].slug
+
   return config
 }, function (error) {
   return Promise.reject(error)
@@ -34,6 +36,5 @@ ApiStore.interceptors.response.use(function (response) {
 
   return Promise.reject(error)
 })
-
 
 export default ApiStore

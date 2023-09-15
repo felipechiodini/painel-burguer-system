@@ -25,11 +25,6 @@ export default {
   components: {
     NavBar
   },
-  data: () => {
-    return {
-      stores: []
-    }
-  },
   computed: {
     menuItems() {
       return this.$router.options.routes[1].children.filter(route => route.menu)

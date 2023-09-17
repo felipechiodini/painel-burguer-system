@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro&family=Roboto:wght@100;300;400;500;700&display=swap');
+
 $body-bg: #e2e2e2;
 $border-radius: 0.5rem;
 
@@ -14,7 +16,8 @@ $theme-colors: (
 );
 
 body {
-  font-weight: 300 !important;
+  font-size: 1rem !important;
+  font-family: 'Maven Pro', sans-serif !important;
 }
 
 .pointer {

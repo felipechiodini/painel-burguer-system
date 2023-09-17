@@ -3,3 +3,11 @@
     <router-view />
   </div>
 </template>
+
+<script>
+export default {
+  metaInfo: {
+    title: 'Burguer System'
+  }
+}
+</script>

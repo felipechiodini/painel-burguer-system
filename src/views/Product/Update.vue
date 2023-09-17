@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <b-card class="shadow my-3">
+  <div>
+    <b-card class="my-3">
       <template v-if="loading === false">
         <div class="row mb-2">
           <div class="col-auto">
@@ -15,106 +15,38 @@
         <label for="product-description">Descrição</label>
         <b-textarea id="product-description" rows="5" v-model="product.description"></b-textarea>
       </template>
-      <template v-else>
-        <b-icon icon="spin"></b-icon>
-      </template>
+      <div class="d-flex justify-content-center" v-else>
+        <b-spinner />
+      </div>
       <template #footer>
         <b-button class="d-flex ml-auto" size="sm" variant="primary" @click="save()">Salvar</b-button>
       </template>
     </b-card>
 
-    <b-card class="shadow mb-3">
-      <template #header>
-        <div class="d-flex align-items-center">
-          <span>Imagens</span>
-          <b-button class="ml-auto" variant="primary" size="sm">Nova Imagem</b-button>
-        </div>
-      </template>
-      <div class="table-responsive">
-        <table class="w-100">
-          <tr>
-            <th>Image</th>
-            <th>Ordem</th>
-          </tr>
-          <tr v-for="(image, key) in images" :key="key">
-            <td><img :src="image.src"></td>
-            <td>{{ image.order }}</td>
-          </tr>
-        </table>
-      </div>
-    </b-card>
-
-    <b-card class="shadow mb-3">
-      <template #header>
-        <div class="d-flex align-items-center">
-          <span>Imagens</span>
-          <b-button class="ml-auto" variant="primary" size="sm">Nova Imagem</b-button>
-        </div>
-      </template>
-      <div class="table-responsive">
-        <table class="w-100">
-          <tr>
-            <th>Image</th>
-            <th>Ordem</th>
-          </tr>
-          <tr v-for="(image, key) in imagens?.page" :key="key">
-            <td><img :src="image.src"></td>
-            <td>{{ image.order }}</td>
-          </tr>
-        </table>
-      </div>
-    </b-card>
-
-    <Photo />
-
-    <b-card class="shadow mb-3">
-      <template #header>
-        <div class="d-flex align-items-center">
-          <h5>Substituições</h5>
-          <b-button class="ml-auto" variant="primary" size="sm" :to="'product/1/substituicao/nova'">Nova Substituição</b-button>
-        </div>
-      </template>
-      <div class="table-responsive">
-        <table class="w-100">
-          <tr>
-            <th>Nome</th>
-            <th>Substituição</th>
-          </tr>
-          <tr v-for="(replacement, key) in replacements" :key="key">
-            <td>{{ replacement.name }}</td>
-            <td>{{ replacement.value }}</td>
-          </tr>
-        </table>
-      </div>
-    </b-card>
-
-    <b-card class="shadow mb-3">
-      <template #header>
-        <div class="d-flex align-items-center">
-          <span>Preços</span>
-          <b-button class="ml-auto" variant="primary" size="sm">Novo Preço</b-button>
-        </div>
-      </template>
-      <table>
-        <tr>
-          <th>Preço</th>
-        </tr>
-        <tr>
-          <td>{{ 20 }}</td>
-        </tr>
-      </table>
-    </b-card>
+    <Photo class="mb-3" />
+    <Price class="mb-3" />
+    <Additional class="mb-3" />
+    <Replacement class="mb-3" />
+    <Configuration class="mb-3" />
 
   </div>
 </template>
 
 <script>
-import Api from '@/js/Api'
+import ApiStore from '@/js/ApiStore'
 import Photo from '@/views/Product/Photo/Index.vue'
+import Price from '@/views/Product/Price/Index.vue'
+import Additional from '@/views/Product/Additional/Index.vue'
+import Replacement from '@/views/Product/Replacement/Index.vue'
+import Configuration from '@/views/Product/Configuration/Index.vue'
 
 export default {
   components: {
-    Photo
+    Photo,
+    Price,
+    Additional,
+    Replacement,
+    Configuration
   },
   data: () => {
     return {
@@ -135,40 +67,24 @@ export default {
   },
   methods: {
     load() {
-      let idProduct = this.$route.params.id ?? null
-
-      if (idProduct) {
-        this.loading = true
-        this.mode = 'edit'
-        Api.get(`products/${idProduct}`).then(({ data }) => {
-          this.product = data
-          this.loadPrice()
-        }).finally(() => {
-          this.loading = false
+      this.loading = true
+      this.mode = 'edit'
+      ApiStore.get(`product/${this.$route.params.product_id}`).then(({ data }) => {
+        this.product = data.product
+      }).finally(() => {
+        this.loading = false
+      })
+    },
+    save() {
+      this.saving = true
+      ApiStore.put(`product/${this.$route.params.product_id}`, this.product).then(({ data }) => {
+        this.$bvToast.toast(data.message, {
+          title: 'Sucesso',
+          variant: 'success'
         })
-      } else {
-        this.mode = 'store'
-      }
-    },
-    loadPrice() {
-      Api.get(`product/${this.$route.params.id}/prices`).then(({ data }) => {
-        this.prices = data
-      }).catch((error) => {
-
+      }).finally(() => {
+        this.saving = false
       })
-    },
-    async save() {
-      const { data } = await Api.put(`products/${this.$route.params.id}`, {
-        active: this.product.active,
-        name: this.product.name,
-        description: this.product.description,
-      })
-
-      this.$bvToast.toast(data.message, {
-        title: 'Sucesso',
-        variant: 'success'
-      })
-
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <b-card class="m-3 shadow">
+  <b-card class="shadow">
     <div class="d-flex align-items-center" slot="header">
       <h5 class="m-0">Produtos</h5>
       <b-button class="ml-auto" variant="primary" size="sm" to="produtos/novo">Novo Produto</b-button>
@@ -7,15 +7,11 @@
     <div class="table-responsive">
       <table class="table w-100 border">
         <tr>
-          <th>ID</th>
           <th>Nome</th>
-          <th>Descrição</th>
         </tr>
         <template v-if="loading === false && error === false">
           <tr v-for="(product, key) in page?.data" :key="key">
-            <td>{{ product.id }}</td>
             <td>{{ product.name }}</td>
-            <td>{{ product.description }}</td>
             <td class="d-flex">
               <b-button @click="goToEdit(product)" size="sm" variant="dark"><i class="fas fa-edit"></i></b-button>
               <b-button @click="showModalDelete(product)" class="ml-1" size="sm" variant="danger"><i class="fas fa-trash"></i></b-button>
@@ -33,6 +29,9 @@ import ModalDelete from '@/components/ModalDelete.vue'
 import ApiStore from '@/js/ApiStore'
 
 export default {
+  metaInfo: {
+    titleTemplate: '%s | Produtos'
+  },
   components: {
     ModalDelete
   },

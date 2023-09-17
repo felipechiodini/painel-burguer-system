@@ -8,12 +8,12 @@
           <b-button size="sm" class="ml-auto">Nova Loja</b-button>
         </div>
         <template v-if="loading === false">
-          <div variant="secondary" class="mb-3 border border-dark shadow p-3 rounded pointer" v-for="(store, key) in stores" :key="key" @click="chooseStore(store)">
+          <b-button variant="transparent" class="mb-3 border text-left border-dark shadow p-3 rounded pointer" v-for="(store, key) in stores" :key="key" @click="chooseStore(store)">
             <span class="mr-2">
               <i class="fas fa-store"></i>
             </span>
             <span>{{ store.name }}</span>
-          </div>
+          </b-button>
         </template>
         <div class="d-flex justify-content-center" v-else>
           <b-spinner />

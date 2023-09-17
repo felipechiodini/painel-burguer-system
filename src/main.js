@@ -1,22 +1,23 @@
 import Vue from 'vue'
 import App from './App.vue'
+import VueMeta from 'vue-meta'
 import router from './router'
 import VueApexCharts from 'vue-apexcharts'
 import { VueMaskDirective } from 'v-mask'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import store from './store'
 
 Vue.config.productionTip = false
 
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import '@/assets/css/custom.scss'
 import '@/assets/css/reset.scss'
 
-import store from './store'
-
+Vue.use(VueMeta)
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueApexCharts)
 Vue.component('apexchart', VueApexCharts)
-Vue.directive('mask', VueMaskDirective);
+Vue.directive('mask', VueMaskDirective)
 
 new Vue({
   router,

@@ -1,18 +1,16 @@
 <template>
-  <b-card>
+  <b-card class="shadow mb-3">
     <div class="d-flex align-items-center" slot="header">
-      <h5 class="m-0">Fotos</h5>
-      <b-button class="ml-auto" variant="primary" size="sm" @click="store()">Nova Foto</b-button>
+      <h5 class="m-0">Preços</h5>
+      <b-button class="ml-auto" variant="primary" size="sm" @click="store()">Novo Preço</b-button>
     </div>
     <div class="table-responsive">
       <table class="table border w-100">
         <tr>
-          <th>Imagem</th>
-          <th>Ordem</th>
+          <th>Preço</th>
         </tr>
-        <tr v-for="(photo, key) in page?.data" :key="key">
-          <td><b-img class="rounded" width="100%" :src="photo.src" /></td>
-          <td>{{ photo.order }}</td>
+        <tr v-for="(price, key) in page?.data" :key="key">
+          <td>{{ price.value }}</td>
         </tr>
       </table>
     </div>
@@ -33,7 +31,7 @@ export default {
   },
   methods: {
     load() {
-      ApiStore.get(`product/${this.$route.params.product_id}/photo`).then(({ data }) => {
+      ApiStore.get(`product/${this.$route.params.product_id}/prices`).then(({ data }) => {
         this.page = data.page
       })
     },

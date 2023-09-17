@@ -13,7 +13,7 @@
     </b-sidebar>
     <div class="w-100">
       <nav-bar />
-      <router-view class="m-4" />
+      <router-view class="m-md-4 m-0" />
     </div>
   </div>
 </template>

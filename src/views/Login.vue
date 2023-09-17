@@ -12,6 +12,7 @@
               <b-button class="btn-login w-100 mt-3" :disabled="loging === true" @click="onSubmit()">
                 <b-spinner small v-if="loging === true"></b-spinner> Entrar
               </b-button>
+              isso é teste
               <div class="d-flex flex-column text-center">
                 <a class="forget-password my-4 pointer" @click="changeMode('reset-password')">Esqueci minha senha</a>
               </div>

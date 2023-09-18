@@ -24,10 +24,10 @@ ApiStore.interceptors.request.use(function (config) {
 
 ApiStore.interceptors.response.use(function (response) {
   return response
-}, function (error) {
+}, (error) => {
   if (error.response.status === 401) {
     localStorage.clear()
-    Router.push({ name: 'auth.login' })
+    document.location.reload()
   }
 
   if (error.response.status === 503) {

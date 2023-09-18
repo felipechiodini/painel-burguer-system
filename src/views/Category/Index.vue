@@ -1,6 +1,6 @@
 <template>
   <b-card>
-    <CardHeader slot="header" name="Categoria" path="/categorias/novo" />
+    <CardHeader slot="header" name="Nova Categoria" to="category.store" />
     <div class="table-responsive">
       <table class="table w-100 border">
         <tr>
@@ -22,6 +22,17 @@
         </template>
       </table>
     </div>
+    <div class="d-flex align-items-center" slot="footer">
+      <span>Total items: {{ page.total }}</span>
+      <div class="ml-auto mr-3">
+        <b-form-select v-model="perPage" @change="load()">
+          <option>10</option>
+          <option>20</option>
+          <option>50</option>
+        </b-form-select>
+      </div>
+      <b-pagination v-model="page.current_page" :total-rows="page.total" :per-page="perPage" class="m-0" />
+    </div>
   </b-card>
 </template>
 
@@ -39,16 +50,27 @@ export default {
   data: () => {
     return {
       page: null,
-      loading: false
+      loading: false,
+      perPage: 10
     }
   },
   mounted() {
     this.load()
   },
+  watch: {
+    'page.current_page': function(newValue) {
+      this.load(newValue)
+    }
+  },
   methods: {
-    load() {
+    load(page = 1) {
       this.loading = true
-      ApiStore.get('category').then(({ data }) => {
+      ApiStore.get('category', {
+        params: {
+          page,
+          per_page: this.perPage
+        }
+      }).then(({ data }) => {
         this.page = data.page
       }).finally(() => {
         this.loading = false

@@ -1,4 +1,4 @@
-import Index from '@/views/Order/Index.vue'
+import Index from '@/views/Order/Manager/Index.vue'
 
 export default [{
     path: 'pedidos',

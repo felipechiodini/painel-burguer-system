@@ -1,4 +1,4 @@
-<template>
+1<template>
   <div class="d-flex align-items-center" style="height: 100vh; width: 100%;">
     <div class="shadow-lg p-4 mx-auto bg-white rounded">
       <b-input class="my-3" placeholder="Nome" v-model="user.name"></b-input>
@@ -34,6 +34,8 @@ export default {
           title: 'Sucesso',
           variant: 'success'
         })
+
+        this.$store.commit('setToken', data.token)
 
         this.$router.push({
           name: 'auth.login'

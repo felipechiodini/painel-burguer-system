@@ -23,14 +23,14 @@ Api.interceptors.request.use(function (config) {
 Api.interceptors.response.use(function (response) {
   return response
 }, function (error) {
-  if (error.response.status === 401) {
-    localStorage.clear()
-    Router.push({ name: 'auth.login' })
-  }
+  // if (error.response.status === 401) {
+  //   localStorage.clear()
+  //   Router.push({ name: 'auth.login' })
+  // }
 
-  if (error.response.status === 503) {
-    Router.push({ name: 'maintenance' })
-  }
+  // if (error.response.status === 503) {
+  //   Router.push({ name: 'maintenance' })
+  // }
 
   return Promise.reject(error)
 })

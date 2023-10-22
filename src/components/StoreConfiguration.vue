@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="container">
     <div class="col-6">
       <label for="warning">Aviso</label>
       <b-input id="warning" v-model="configuration.warning"></b-input>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import Api from '@/js/Api'
+import ApiStore from '@/js/ApiStore'
 
 export default {
   name: 'StoreConfiguration',
@@ -32,22 +32,16 @@ export default {
     this.load()
   },
   methods: {
-    async load() {
-      const { data } = await Api.get('/configuration')
-      this.configuration = data
+    load() {
+      ApiStore.get('/configuration').then(({ data }) => {
+        this.configuration = data
+      })
     },
-    async save() {
-      const { data } = await Api.post('/configuration', this.configuration)
-
-      this.$bvToast.toast(data.message, {
-        title: 'Sucesso',
-        variant: 'success'
+    save() {
+      ApiStore.post('/configuration', this.configuration).then(({ data }) => {
+        this.$bvToast.toast(data.message, { title: 'Sucesso', variant: 'success' })
       })
     }
   }
 }
 </script>
-
-<style>
-
-</style>

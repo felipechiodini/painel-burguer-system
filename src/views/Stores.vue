@@ -5,7 +5,7 @@
       <div class="d-flex flex-column m-3">
         <div class="d-flex align-items-center mb-3">
           <p class="m-0">Qual loja você desejá administrar?</p>
-          <b-button size="sm" class="ml-auto">Nova Loja</b-button>
+          <b-button size="sm" class="ml-auto" @click="$router.push({ name: 'store.create' })">Nova Loja</b-button>
         </div>
         <template v-if="loading === false">
           <b-button variant="transparent" class="mb-3 border text-left border-dark shadow p-3 rounded pointer" v-for="(store, key) in stores" :key="key" @click="chooseStore(store)">
@@ -47,6 +47,8 @@ export default {
       this.loading = true
       Api.get('store/all').then(({ data }) => {
         this.stores = data.stores
+      }).catch((error) => {
+        this.$bvToast.toast(error.response.data.message, { title: 'Falha' })
       }).finally(() => {
         this.loading = false
       })

@@ -5,8 +5,6 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import NotFound from '../views/NotFound.vue'
 import Stores from '../views/Stores.vue'
-import Store from '../views/Store/Store.vue'
-import Profile from '../views/Profile.vue'
 import UserRouters from './routes/user.js'
 import PhotoRouters from './routes/photo.js'
 import CategoryRouters from './routes/category.js'
@@ -51,21 +49,7 @@ const routes = [
       // ...ProductReplacementsRouters,
       ...ComboRouters,
       ...OrderRouters,
-      {
-        path: 'nova-loja',
-        name: 'store.create',
-        component: Store
-      }
     ]
-  },
-  {
-    path: '/perfil',
-    name: 'user.profile',
-    component: Profile,
-    beforeEnter: (to, from, next) => {
-      if (store.getters['user/isLoggedin']) next()
-      else next('/login')
-    }
   },
   {
     path: '/login',

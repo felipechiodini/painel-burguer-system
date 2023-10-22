@@ -1,9 +1,16 @@
 <template>
-  <div class="container">
+  <div class="container py-3">
     <div v-if="loading === false">
       <!-- <store-status @update="load()" class="mb-4" :status="home.store_status" /> -->
 
       <div class="dwaoifjwaoifwa">
+        <div class="fpoawkopfawj link">
+          <a target="_blanck" :href="`https://teste.burguersystem.online`">
+            <span>Link Cardápio</span>
+            <h5><i class="fas fa-link"></i></h5>
+          </a>
+        </div>
+
         <div class="fpoawkopfawj">
           <span>Pedidos Em aberto</span>
           <h5>5</h5>
@@ -62,14 +69,12 @@
       }
     },
     mounted() {
-      // this.load()
+      this.load()
     },
     methods: {
       load() {
         this.loading = true
-        ApiStore.get('home').then(({
-          data
-        }) => {
+        ApiStore.get('home').then(({ data }) => {
           this.home = data.home
         }).finally(() => {
           this.loading = false
@@ -78,7 +83,6 @@
       currency(val){
         return val.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
       }
-
     }
   }
 
@@ -106,6 +110,11 @@
 
   .fpoawkopfawj h5 {
     font-size: 2rem;
+  }
+
+  .link a {
+    text-decoration: none;
+    color: #fff;
   }
 
 </style>

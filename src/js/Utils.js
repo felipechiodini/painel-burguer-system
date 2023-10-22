@@ -16,3 +16,10 @@ export const translateWeekDay = (weekDay) => {
             return 'Sábado'
     }
 }
+
+export const deliveries = () => {
+  return [
+    { id: 1, name: 'Entrega' },
+    { id: 2, name: 'Retirada' }
+  ]
+}

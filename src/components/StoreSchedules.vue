@@ -16,7 +16,7 @@
 
 <script>
 import Api from '@/js/Api'
-import { translateWeekDay } from '@/js/Utils' 
+import { translateWeekDay } from '@/js/Utils'
 
 export default {
   name: 'StoreSchedules',
@@ -42,7 +42,7 @@ export default {
           variant: 'success'
         })
       } catch (error) {
-        
+
       }
     },
     weekDay(weekDay) {

@@ -24,19 +24,19 @@ const routes = [
     path: '/',
     name: 'store.select',
     component: Stores,
-    // beforeEnter: (to, from, next) => {
-    //   if (store.getters['user/isLoggedin']) next()
-    //   else next('/login')
-    // }
+    beforeEnter: (to, from, next) => {
+      if (store.getters['user/isLoggedin']) next()
+      else next('/login')
+    }
   },
   {
     path: '/store/:slug',
     name: 'store.index',
     component: Main,
-    // beforeEnter: (to, from, next) => {
-    //   if (store.getters['user/isLoggedin']) next()
-    //   else next('/login')
-    // },
+    beforeEnter: (to, from, next) => {
+      if (store.getters['user/isLoggedin']) next()
+      else next('/login')
+    },
     children: [
       ...GeneralRouters,
       ...UserRouters,

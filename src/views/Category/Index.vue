@@ -1,5 +1,5 @@
 <template>
-  <b-card>
+  <b-card class="container my-3 px-0">
     <CardHeader slot="header" name="Nova Categoria" to="category.store" />
     <div class="table-responsive">
       <table class="table w-100 border">

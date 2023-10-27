@@ -1,5 +1,5 @@
 <template>
-  <b-card>
+  <b-card class="container my-3">
     <CardHeader slot="header" name="Novo Banner" to="banner.store" />
     <div class="table-responsive">
       <table class="table w-100 border">

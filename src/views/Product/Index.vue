@@ -1,5 +1,5 @@
 <template>
-  <b-card class="shadow container my-3">
+  <b-card class="container my-3">
     <div class="d-flex align-items-center" slot="header">
       <h5 class="m-0">Produtos</h5>
       <b-button class="ml-auto" variant="primary" size="sm" to="produtos/novo">Novo Produto</b-button>

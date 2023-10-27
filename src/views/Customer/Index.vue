@@ -1,20 +1,20 @@
 <template>
-  <b-card class="m-3 shadow">
+  <b-card class="container my-3">
     <div class="d-flex align-items-center" slot="header">
       <h5 class="m-0">Clientes</h5>
     </div>
     <div class="table-responsive">
       <table class="table w-100 border">
         <tr>
-          <th>ID</th>
           <th>Nome</th>
-          <th>Endereço</th>
+          <th>CPF</th>
+          <th>Celular</th>
         </tr>
         <template v-if="loading === false && error === false">
           <tr v-for="(order, key) in page?.data" :key="key">
-            <td>{{ order.id }}</td>
-            <td>{{ order.customer.name }}</td>
-            <td>{{ order.description }}</td>
+            <td>{{ order.name }}</td>
+            <td>{{ order.document }}</td>
+            <td>{{ order.cellphone }}</td>
           </tr>
         </template>
       </table>
@@ -40,7 +40,7 @@ export default {
   methods: {
     load() {
       this.loading = true
-      ApiStore.get('customers').then(({ data }) => {
+      ApiStore.get('customer').then(({ data }) => {
         this.page = data.page
       }).catch(() => {
         this.error = true
@@ -52,11 +52,11 @@ export default {
       this.selectedProduct = product
       this.$bvModal.show('modal-delete')
     },
-    goToEdit(product) {
+    goToEdit(customer) {
       this.$router.push({
-        name: 'product.update',
+        name: 'customer.update',
         params: {
-          product_id: product.id
+          customer_id: customer.id
         }
       })
     }

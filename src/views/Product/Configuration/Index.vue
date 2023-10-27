@@ -5,18 +5,16 @@
         <h5 class="m-0">Configuração</h5>
       </div>
     </template>
-    <div>
-      <label for="max_number_additionals">aaaaa</label>
+    <div v-if="configuration">
+      <label for="max_number_additionals">Máximo de adicionais</label>
       <b-input id="max_number_additionals" type="text" v-model="configuration.max_number_additionals" />
-      <label for="max_number_replacements">aaaaa</label>
+      <label for="max_number_replacements">Máximo de substituições</label>
       <b-input id="max_number_replacements" type="text" v-model="configuration.max_number_replacements" />
-      <label for="store_product_id">aaaaa</label>
-      <b-input id="store_product_id" type="text" v-model="configuration.store_product_id" />
-      <label for="unit_type">aaaaa</label>
-      <b-input id="unit_type" type="text" v-model="configuration.unit_type" />
+      <label for="unit_type">Unidade de medida</label>
+      <b-form-select v-model="configuration.unit_type" :options="options" />
     </div>
     <template #footer>
-      <b-button class="d-flex ml-auto" size="sm" variant="primary" @click="save()">Salvar</b-button>
+      <b-button class="d-flex ml-auto" size="sm" variant="primary" @click="submit()">Salvar</b-button>
     </template>
   </b-card>
 </template>
@@ -27,7 +25,11 @@ import ApiStore from '@/js/ApiStore'
 export default {
   data: () => {
     return {
-      configuration: null
+      configuration: null,
+      options: [
+        { text: 'Gramas', value: 'grams' },
+        { text: 'Unidade', value: 'unit' }
+      ]
     }
   },
   mounted() {
@@ -39,12 +41,12 @@ export default {
         this.configuration = data.configuration
       })
     },
-    store() {
-      this.$router.push({
-        name: 'photo.store',
-        params: {
-          product_id: this.$route.params.product_id
-        }
+    submit() {
+      ApiStore.post(`product/${this.$route.params.product_id}/configuration`, this.configuration).then(({ data }) => {
+        this.$bvModal.show({
+          title: 'Sucesso',
+          message: data.message
+        })
       })
     }
   }

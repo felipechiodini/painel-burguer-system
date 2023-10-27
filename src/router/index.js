@@ -13,6 +13,7 @@ import WaiterRouters from './routes/waiter.js'
 import BannerRouters from './routes/banner.js'
 import ComboRouters from './routes/combo.js'
 import ProductRouters from './routes/product.js'
+import Replacements from './routes/replacements.js'
 import OrderRouters from './routes/order.js'
 import GeneralRouters from './routes/general.js'
 import store from '@/store'
@@ -46,7 +47,7 @@ const routes = [
       ...BannerRouters,
       ...PhotoRouters,
       ...ProductRouters,
-      // ...ProductReplacementsRouters,
+      ...Replacements,
       ...ComboRouters,
       ...OrderRouters,
     ]

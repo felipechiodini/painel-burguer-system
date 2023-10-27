@@ -1,5 +1,9 @@
 <template>
-  <div>
+  <div class="container my-3">
+    <div class="d-flex align-items-center">
+      <b-button @click="$router.back()"><i class="fas fa-arrow-left"></i></b-button>
+      <b-breadcrumb class="mb-0 ml-3 bg-white" :items="breadcrumb"></b-breadcrumb>
+    </div>
     <b-card class="my-3">
       <template v-if="loading === false">
         <div class="row mb-2">
@@ -18,9 +22,9 @@
       <div class="d-flex justify-content-center" v-else>
         <b-spinner />
       </div>
-      <template #footer>
-        <b-button class="d-flex ml-auto" size="sm" variant="primary" @click="save()">Salvar</b-button>
-      </template>
+      <div class="d-flex" slot="footer">
+        <b-button class="ml-auto" size="sm" variant="primary" @click="save()">Salvar</b-button>
+      </div>
     </b-card>
 
     <Photo class="mb-3" />
@@ -57,6 +61,7 @@ export default {
       },
       images: [{ order: 'fleipe', src: 'teste.jpg' }],
       replacements: [{ order: 'fleipe', src: 'teste.jpg' }],
+      breadcrumb: [ { text: 'Home', href: '/' }, { text: 'Produtos' } ],
       loading: false,
       prices: null,
       mode: null

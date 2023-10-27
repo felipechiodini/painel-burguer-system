@@ -8,11 +8,9 @@
       <table class="table border w-100">
         <tr>
           <th>Imagem</th>
-          <th>Ordem</th>
         </tr>
         <tr v-for="(photo, key) in page?.data" :key="key">
           <td><b-img class="rounded" width="100%" :src="photo.src" /></td>
-          <td>{{ photo.order }}</td>
         </tr>
       </table>
     </div>

@@ -1,23 +1,25 @@
 <template>
-  <b-card class="m-4 shadow">
-    <template #header>
+  <b-card class="container my-3">
+    <div slot="header">
       <div class="d-flex align-items-center">
         <h5>Nova Substituição</h5>
       </div>
-    </template>
-    <label for="">Nome</label>
-    <b-input v-model="replacement.name"></b-input>
-    <label for="">Valor</label>
-    <currency v-model="replacement.value"></currency>
-    <template #footer>
-      <b-button variant="primary" @click="save()">Criar Substituição</b-button>
-    </template>
+    </div>
+    <div>
+      <label for="replacement-name">Nome</label>
+      <b-input id="replacement-name" v-model="replacement.name"></b-input>
+      <label for="replacement-value">Valor</label>
+      <b-input id="replacement-value" v-model="replacement.value"></b-input>
+    </div>
+    <div slot="footer" class="d-flex">
+      <b-button class="ml-auto" variant="primary" @click="submit()">Criar Substituição</b-button>
+    </div>
   </b-card>
 </template>
 
 <script>
-import Api from '@/js/Api'
 import Currency from '@/components/Currency.vue'
+import ApiStore from '@/js/ApiStore'
 
 export default {
   components: {
@@ -32,12 +34,14 @@ export default {
     }
   },
   methods: {
-    save() {
-      Api.post(`product/${this.$router.product_id}/replacement`, this.replacement).then(({ data }) => {
+    submit() {
+      ApiStore.post(`product/${this.$route.params.product_id}/replacements`, this.replacement).then(({ data }) => {
         this.$bvToast.toast(data.message, {
           title: 'Sucesso',
           variant: 'success'
         })
+      }).catch(() => {
+        this.$bvToast.show('dwad')
       })
     }
   }

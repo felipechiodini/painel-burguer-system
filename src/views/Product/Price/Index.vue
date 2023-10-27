@@ -1,8 +1,8 @@
 <template>
-  <b-card class="shadow mb-3">
+  <b-card class="mb-3">
     <div class="d-flex align-items-center" slot="header">
-      <h5 class="m-0">Preços</h5>
-      <b-button class="ml-auto" variant="primary" size="sm" @click="store()">Novo Preço</b-button>
+      <h5 class="m-0">Preço</h5>
+      <b-button class="ml-auto" variant="primary" size="sm" @click="store()">Editar</b-button>
     </div>
     <div class="table-responsive">
       <table class="table border w-100">
@@ -10,7 +10,7 @@
           <th>Preço</th>
         </tr>
         <tr v-for="(price, key) in page?.data" :key="key">
-          <td>{{ price.value }}</td>
+          <td>{{ currency(price.value) }}</td>
         </tr>
       </table>
     </div>

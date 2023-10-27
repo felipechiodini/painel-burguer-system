@@ -3,7 +3,7 @@
     <template #header>
       <div class="d-flex align-items-center">
         <h5 class="m-0">Substituições</h5>
-        <b-button class="ml-auto" variant="primary" size="sm" :to="'product/1/substituicao/nova'">Nova Substituição</b-button>
+        <b-button class="ml-auto" variant="primary" size="sm" @click="newReplacement()">Nova Substituição</b-button>
       </div>
     </template>
     <div class="table-responsive">
@@ -14,7 +14,7 @@
         </tr>
         <tr v-for="(replacement, key) in page?.data" :key="key">
           <td>{{ replacement.name }}</td>
-          <td>{{ replacement.value }}</td>
+          <td>{{ currency(replacement.value) }}</td>
           <td>
             <b-button size="sm" variant="dark"><i class="fas fa-edit"></i></b-button>
             <b-button class="ml-1" size="sm" variant="danger"><i class="fas fa-trash"></i></b-button>
@@ -43,14 +43,14 @@ export default {
         this.page = data.page
       })
     },
-    store() {
+    newReplacement() {
       this.$router.push({
-        name: 'photo.store',
+        name: 'replacement.store',
         params: {
           product_id: this.$route.params.product_id
         }
       })
-    }
+    },
   }
 }
 </script>

@@ -3,7 +3,7 @@
     <b-button v-b-toggle.sidebar-left variant="transparent" class="text-white p-0">
       <b-icon icon="list"></b-icon>
     </b-button>
-    <span class="text-white ml-auto mr-3">{{ store.name }}</span>
+    <span class="text-white ml-auto mr-3">{{ store?.name }}</span>
     <b-button v-b-toggle.sidebar-right size="sm" variant="transparent" class="mr-3 p-0 text-white">
       <b-icon icon="bell-fill"></b-icon>
     </b-button>

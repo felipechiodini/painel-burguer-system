@@ -14,7 +14,7 @@
         </tr>
         <tr v-for="(additional, key) in page?.data" :key="key">
           <td>{{ additional.name }}</td>
-          <td>{{ additional.value }}</td>
+          <td>{{ currency(additional.value) }}</td>
           <td>
             <b-button size="sm" variant="dark"><i class="fas fa-edit"></i></b-button>
             <b-button class="ml-1" size="sm" variant="danger"><i class="fas fa-trash"></i></b-button>

@@ -2,33 +2,38 @@
   <b-card class="m-4 shadow">
     <template #header>
       <div class="d-flex align-items-center">
-        <h5>Novo Preço</h5>
+        <h5>Nova Substituição</h5>
       </div>
     </template>
+    <label for="">Nome</label>
+    <b-input v-model="replacement.name"></b-input>
     <label for="">Valor</label>
-    <b-input></b-input>
+    <currency v-model="replacement.value"></currency>
     <template #footer>
-      <b-button variant="primary" @click="save()">Criar Preço</b-button>
+      <b-button variant="primary" @click="save()">Criar Substituição</b-button>
     </template>
   </b-card>
 </template>
 
 <script>
 import Api from '@/js/Api'
+import Currency from '@/components/Currency.vue'
 
 export default {
+  components: {
+    Currency
+  },
   data: () => {
     return {
-      price: {
+      replacement: {
+        name: null,
         value: null,
-        start: null,
-        end: null,
       }
     }
   },
   methods: {
     save() {
-      Api.post(`product/${this.$router.product_id}/price`, this.price).then(({ data }) => {
+      Api.post(`product/${this.$router.product_id}/replacement`, this.replacement).then(({ data }) => {
         this.$bvToast.toast(data.message, {
           title: 'Sucesso',
           variant: 'success'
